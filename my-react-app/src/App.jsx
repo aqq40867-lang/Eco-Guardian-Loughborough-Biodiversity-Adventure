@@ -1,82 +1,100 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import './index.css';
 
-// 导入组件
 import Navbar from './components/Navbar';
+import HomeCarousel from './components/HomeCarousel';
 import BiodiversityGallery from './components/BiodiversityGallery';
-import EcoStory from './components/EcoStory';
-import QuizGame from './components/QuizGame';
+import InteractiveMap from './components/InteractiveMap';
 import BudgetGame from './components/BudgetGame';
-import MessageBoard from './components/MessageBoard';
+import QuizGame from './components/QuizGame';
+import EcoTaskPanel from './components/EcoTaskPanel';
 import DailyEcoActions from './components/DailyEcoActions';
-import WelcomeStage from './components/WelcomeStage';
-import Backpack from './components/Backpack';
+import MessageBoard from './components/MessageBoard';
+import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import BiodiversityPage from './pages/BiodiversityPage';
 
-function App() {
-  const [appStage, setAppStage] = useState('LOADING'); 
-  const [stats, setStats] = useState({ money: 100, eco: 50, happy: 50 });
-  const [badges, setBadges] = useState([]);
 
-  // 1. 初始检查
-  useEffect(() => {
-    const hasVisited = localStorage.getItem('lboro_visited');
-    setAppStage(hasVisited === 'true' ? 'MAIN' : 'WELCOME');
-  }, []);
+const App = () => {
+  const [stats, setStats] = useState({
+    money: 100,
+    eco: 50,
+    happy: 50
+  });
 
-  // 2. 勋章逻辑
-  useEffect(() => {
-    if (stats.eco >= 80 && !badges.includes('绿色巨人')) setBadges(prev => [...prev, '绿色巨人']);
-    if (stats.money >= 200 && !badges.includes('理财专家')) setBadges(prev => [...prev, '理财专家']);
-  }, [stats]);
+  const [tasks, setTasks] = useState({
+    quizAnswered: 0,
+    galleryViewed: 0,
+    policyMade: 0
+  });
 
-  // 3. 阶段切换函数
-  const enterMainSite = () => {
-    localStorage.setItem('lboro_visited', 'true');
-    setAppStage('MAIN');
+  const handleQuizCorrect = (reward) => {
+    setStats(prev => ({
+      ...prev,
+      money: prev.money + reward
+    }));
+
+    setTasks(prev => ({
+      ...prev,
+      quizAnswered: prev.quizAnswered + 1
+    }));
   };
 
-  if (appStage === 'LOADING') return null;
+  const handleViewAnimal = () => {
+    setTasks(prev => ({
+      ...prev,
+      galleryViewed: prev.galleryViewed + 1
+    }));
+  };
 
-  // ---------------------------------------------------------
-  // 分阶段渲染
-  // ---------------------------------------------------------
-
-  if (appStage === 'WELCOME') {
-    return <WelcomeStage onStart={() => setAppStage('STORY')} />;
-  }
-
-  if (appStage === 'STORY') {
-    return (
-      <div style={{ height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', backgroundColor: '#f0fdf4' }}>
-        <EcoStory onFinish={enterMainSite} />
-      </div>
-    );
-  }
+  const handlePolicyMade = () => {
+    setTasks(prev => ({
+      ...prev,
+      policyMade: prev.policyMade + 1
+    }));
+  };
 
   return (
-    <div className="app-container" style={{ animation: 'fadeIn 1s ease' }}>
-      <Navbar />
-      <BiodiversityGallery />
-      
-      <main id="center" style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
-        <DailyEcoActions />
-        
-        <div id="spacer" style={{ margin: '40px 0' }}><div className="ticks"></div></div>
+  <BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar />
+            <CookieBanner />
+            <EcoTaskPanel tasks={tasks} />
 
-        <QuizGame onCorrect={(amt) => setStats(p => ({...p, money: p.money + amt}))} />
-        <BudgetGame stats={stats} setStats={setStats} />
-        
-        {/* 使用新组件展示勋章 */}
-        <Backpack badges={badges} />
+            <main>
+              <HomeCarousel />
+              <DailyEcoActions />
+              
+              <InteractiveMap
+                onDiscoverAnimal={() => {
+                  setTasks(prev => ({
+                    ...prev,
+                    galleryViewed: prev.galleryViewed + 1
+                  }));
+                }}
+              />
+              <QuizGame onCorrect={handleQuizCorrect} />
+              <BudgetGame
+                stats={stats}
+                setStats={setStats}
+                onPolicyMade={handlePolicyMade}
+              />
+              <MessageBoard />
+            </main>
 
-        <MessageBoard />
-      </main>
+            <Footer />
+          </>
+        }
+      />
 
-      <footer id="spacer" style={{ textAlign: 'center', padding: '60px', opacity: 0.7 }}>
-        <p>© 2026 Loughborough University | COP926 Coursework</p>
-      </footer>
-    </div>
-  );
+      <Route path="/biodiversity" element={<BiodiversityPage />} />
+    </Routes>
+  </BrowserRouter>
+);
 }
-
 export default App;

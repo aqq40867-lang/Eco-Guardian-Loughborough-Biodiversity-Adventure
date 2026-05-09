@@ -149,72 +149,225 @@ a {
     box-shadow: 2px 2px 0px var(--color-dark-line);
 }
 
-/* ==========================================================
-   3. 欢迎区 (Hero Section)
-   ========================================================== */
-.hero-section {
-    background-color: var(--color-bg-main);
-    text-align: center;
-    padding: 6rem 2rem;
-    /* 如果有漂亮的背景图，可以在这里添加 */
-    /* background-image: url('images/hero-bg.jpg'); */
-    /* background-size: cover; */
-    /* background-position: center; */
-}
-
-.hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 0px white; /* 增加立体感 */
-}
-
-.hero-section p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 /* ==========================================================
    4. 科普画廊区 (Education Section - Animals)
    ========================================================== */
-.education-section {
-    background-color: var(--color-bg-secondary);
-    padding: 4rem 2rem;
-    text-align: center;
-    border-top: 4px dashed var(--color-dark-line);
-    border-bottom: 4px dashed var(--color-dark-line);
+/* ==========================================================
+   Biodiversity Gallery Showcase
+   ========================================================== */
+
+.biodiversity-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-bg-main);
 }
 
-.animal-cards-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* 允许在小屏幕上换行 */
-    gap: 30px;
-    max-width: 1200px;
-    margin: 2rem auto 0;
+.gallery-showcase-frame {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 34px;
+  background-color: var(--color-neutral);
+  border: 5px solid var(--color-dark-line);
+  border-radius: 38px;
+  box-shadow: 10px 10px 0 var(--color-dark-line);
 }
 
-.animal-card {
-    background-color: var(--color-neutral);
-    border: 3px solid var(--color-dark-line);
-    border-radius: 20px;
-    padding: 2rem;
-    flex: 1;
-    min-width: 250px;
-    max-width: 350px;
-    box-shadow: 6px 6px 0px var(--color-dark-line);
-    transition: transform 0.3s ease;
+.gallery-showcase-header {
+  margin-bottom: 28px;
+  background-color: var(--color-bg-secondary);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
 }
 
-.animal-card:hover {
-    transform: translateY(-10px);
+.gallery-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-weight: 900;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--color-dark-line);
+  margin-bottom: 16px;
 }
 
-.animal-card h3 {
-    color: var(--color-accent-1);
-    font-size: 1.5rem;
+.gallery-showcase-header h2 {
+  margin: 0 0 12px;
+  font-size: 2.3rem;
+}
+
+.gallery-showcase-header p {
+  margin: 0 auto;
+  font-size: 1.1rem;
+  max-width: 760px;
+  line-height: 1.7;
+}
+
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.gallery-tab {
+  background-color: white;
+  color: var(--color-dark-line);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--color-dark-line);
+}
+
+.gallery-tab.active,
+.gallery-tab:hover {
+  background-color: var(--color-accent-2);
+}
+
+.gallery-carousel {
+  position: relative;
+}
+
+.gallery-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-track {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gallery-card-shell {
+  min-width: 16.6666%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.species-card {
+  width: 100%;
+  height: 350px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 24px;
+  padding: 26px 16px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--color-dark-line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.species-card:hover {
+  transform: translateY(-5px);
+}
+
+.species-icon {
+  font-size: 4rem;
+  margin-bottom: 18px;
+}
+
+.species-card strong {
+  font-size: 1.25rem;
+  color: var(--color-dark-line);
+  margin-bottom: 12px;
+}
+
+.species-card p {
+  font-size: 0.95rem;
+  color: var(--color-dark-line);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.species-card-action {
+  margin-top: auto;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--color-dark-line);
+}
+
+.species-card-more {
+  color: var(--color-dark-line);
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 50%;
+  background-color: white;
+  color: var(--color-dark-line);
+  font-size: 1.5rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
+.gallery-arrow-left {
+  left: -18px;
+}
+
+.gallery-arrow-right {
+  right: -18px;
+}
+
+/* Mobile */
+@media (max-width: 1100px) {
+  .gallery-card-shell {
+    min-width: 33.3333%;
+  }
+}
+
+@media (max-width: 700px) {
+  .biodiversity-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .gallery-showcase-frame {
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: 5px 5px 0 var(--color-dark-line);
+  }
+
+  .gallery-showcase-header {
+    padding: 22px;
+  }
+
+  .gallery-showcase-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .gallery-showcase-header p {
+    font-size: 1rem;
+  }
+
+  .gallery-card-shell {
+    min-width: 80%;
+  }
+
+  .species-card {
+    height: 320px;
+  }
+
+  .gallery-arrow-left {
+    left: -10px;
+  }
+
+  .gallery-arrow-right {
+    right: -10px;
+  }
 }
 
 /* ==========================================================
@@ -239,93 +392,200 @@ a {
 /* ==========================================================
    6. 互动地图区 (Interactive Map Section)
    ========================================================== */
-.interactive-map-section {
-    background-color: var(--color-bg-main);
-    padding: 4rem 2rem;
-    text-align: center;
+.eco-map-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-bg-main);
 }
 
-.map-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 2rem auto 0;
-    height: 600px;
-    text-align: left; /* 内部内容左对齐 */
-    gap: 20px; /* 左侧边栏和地图之间的间距 */
+.eco-map-frame {
+  max-width: 1250px;
+  margin: 0 auto;
+  background-color: var(--color-neutral);
+  border: 5px solid var(--color-dark-line);
+  border-radius: 38px;
+  padding: 34px;
+  box-shadow: 10px 10px 0 var(--color-dark-line);
 }
 
-/* 左侧：控制面板 */
-.sidebar {
-    width: 300px;
-    background-color: var(--color-neutral);
+.eco-map-header {
+  background-color: var(--color-bg-secondary);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.eco-map-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-weight: 900;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--color-dark-line);
+  margin-bottom: 16px;
+}
+
+.eco-map-header h2 {
+  font-size: 2.3rem;
+  margin: 0 0 12px;
+}
+
+.eco-map-header p {
+  max-width: 780px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.eco-map-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 26px;
+}
+
+.eco-map-info-panel {
+  background-color: white;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 26px;
+  padding: 24px;
+  box-shadow: 5px 5px 0 var(--color-dark-line);
+}
+
+.discovered-animal-card {
+  background-color: var(--color-bg-secondary);
+  border: 3px dashed var(--color-dark-line);
+  border-radius: 20px;
+  padding: 18px;
+  margin: 18px 0;
+}
+
+.discovered-animal-card span {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--color-accent-1);
+}
+
+.discovered-animal-card h4 {
+  margin: 6px 0;
+  font-size: 1.3rem;
+}
+
+.eco-map-legend {
+  margin-top: 24px;
+  background-color: var(--color-neutral);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.eco-map-legend p {
+  margin: 8px 0;
+  font-weight: 700;
+}
+
+.eco-map-container {
+  border: 4px solid var(--color-dark-line);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0 var(--color-dark-line);
+}
+
+.leaflet-eco-map {
+  height: 560px;
+  width: 100%;
+}
+
+.eco-map-marker {
+  width: 42px;
+  height: 42px;
+  background: white;
+  border: 3px solid #1C4D4F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 3px 3px 0 #1C4D4F;
+}
+
+.eco-popup h3 {
+  margin: 0 0 6px;
+}
+
+.eco-popup p {
+  margin: 8px 0;
+}
+
+.popup-animal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.popup-animal-buttons button {
+  background-color: #F7C243;
+  border: 2px solid #1C4D4F;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .eco-map-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .leaflet-eco-map {
+    height: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .eco-map-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .eco-map-frame {
     padding: 20px;
-    border: 3px solid var(--color-dark-line);
-    border-radius: 15px;
-    box-shadow: 6px 6px 0px var(--color-dark-line);
-    overflow-y: auto; /* 如果内容过多可以滚动 */
+    border-radius: 28px;
+  }
+
+  .eco-map-header h2 {
+    font-size: 1.7rem;
+  }
 }
 
-.sidebar h2, .sidebar h3 {
-    margin-top: 0;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--color-bg-secondary);
+.reset-map-btn {
+  position: absolute;
+
+  left: 18px;
+  bottom: 18px;
+
+  z-index: 1000;
+
+  background-color: #F7C243;
+
+  border: 3px solid #1C4D4F;
+
+  border-radius: 999px;
+
+  padding: 12px 18px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow: 4px 4px 0 #1C4D4F;
+
+  transition: all 0.2s ease;
 }
 
-.toggle-item {
-    margin: 15px 0;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Checkbox 和文字的间距 */
+.reset-map-btn:hover {
+  transform: translateY(-2px);
 }
-
-.toggle-item input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: var(--color-accent-1); /* 改变复选框颜色 (现代浏览器支持) */
-}
-
-/* 右侧：地图区域 */
-.map-area {
-    flex-grow: 1;
-    background-color: var(--color-bg-secondary); /* 临时的地图背景色 */
-    border: 4px solid var(--color-dark-line);
-    border-radius: 15px;
-    position: relative; /* 【核心】作为标记的定位参照物 */
-    overflow: hidden;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1); /* 内阴影增加深度 */
-}
-
-.base-map-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-dark-line);
-    font-size: 1.2rem;
-}
-
-/* 地图上的标记点 */
-.marker {
-    font-size: 2.5rem; /* 大一点更可爱 */
-    position: absolute;
-    display: none; /* 默认隐藏，由 JS 控制 */
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹跳动画 */
-    filter: drop-shadow(2px 2px 0px var(--color-dark-line)); /* 给 emoji 加阴影 */
-}
-
-.marker:hover {
-    transform: scale(1.3) translateY(-5px);
-    cursor: help; /* 鼠标变成问号 */
-    z-index: 10;
-}
-
-/* 预设动物标记位置 (需要根据你真实的地图图片微调百分比) */
-#marker-duck { top: 40%; left: 30%; }
-#marker-fox { top: 25%; left: 75%; }
-#marker-building { top: 50%; left: 40%; }
 
 /* ==========================================================
    7. 页脚 (Footer)
@@ -340,4 +600,1159 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+/* ==========================================================
+   8. 移动端适配 Mobile Responsive
+   ========================================================== */
+
+/* 平板和小屏电脑 */
+@media (max-width: 900px) {
+  .navbar-pill {
+    width: 92%;
+    padding: 12px;
+    border-radius: 28px;
+    top: 10px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+  }
+
+  .nav-register {
+    font-size: 0.95rem;
+    padding: 8px 18px;
+  }
+
+  .hero-section {
+    padding: 4rem 1.2rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-section p {
+    font-size: 1.15rem;
+  }
+
+  .map-container,
+  .map-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar,
+  .map-sidebar {
+    width: auto;
+  }
+
+  .map-area,
+  .map-canvas {
+    min-height: 420px;
+  }
+}
+
+/* 手机端 */
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem !important;
+  }
+
+  h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .navbar-pill {
+    margin: 10px auto;
+    width: calc(100% - 24px);
+    border-radius: 24px;
+    box-shadow: 3px 3px 0 var(--color-dark-line);
+  }
+
+  .nav-logo {
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-links li,
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .nav-register {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .education-section,
+  .concept-section,
+  .interactive-map-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .animal-card {
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1.5rem;
+  }
+
+  .map-layout,
+  .map-container {
+    gap: 16px;
+  }
+
+  .map-sidebar,
+  .sidebar {
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .map-canvas,
+  .map-area {
+    width: 100%;
+    min-height: 360px;
+    border-width: 3px;
+  }
+
+  .map-region {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+    max-width: 130px;
+  }
+
+  .animal-marker,
+  .marker {
+    font-size: 1.8rem;
+  }
+
+  .card-style {
+    padding: 22px !important;
+    margin: 28px 0 !important;
+    border-radius: 22px !important;
+  }
+
+  .btn-kid,
+  .btn-primary {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    padding: 12px 16px;
+  }
+
+  .input-style {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  footer {
+    padding: 2rem 1rem !important;
+  }
+}
+
+/* 超小屏手机 */
+@media (max-width: 390px) {
+  .nav-links {
+    grid-template-columns: 1fr;
+  }
+
+  .map-canvas,
+  .map-area {
+    min-height: 300px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.65rem;
+  }
+}
+
+/* ==========================================================
+   Budget Game - Eco City Dashboard
+   ========================================================== */
+
+.budget-game-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-bg-main);
+}
+
+.budget-game-card {
+  max-width: 1150px;
+  margin: 0 auto;
+  background-color: var(--color-neutral);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 34px;
+  padding: 34px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+}
+
+.budget-game-header {
+  background-color: var(--color-bg-secondary);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 26px;
+  padding: 28px;
+  margin-bottom: 30px;
+}
+
+.budget-game-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+
+.budget-game-header h2 {
+  font-size: 2.2rem;
+  margin: 0 0 10px;
+}
+
+.budget-game-header p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.budget-game-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.budget-kpi-panel,
+.budget-policy-panel {
+  background-color: white;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 26px;
+  padding: 26px;
+  box-shadow: 5px 5px 0 var(--color-dark-line);
+}
+
+.budget-kpi-panel h3,
+.budget-policy-panel h3 {
+  margin-bottom: 22px;
+  font-size: 1.45rem;
+}
+
+.budget-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+
+.bar-track {
+  height: 16px;
+  background-color: var(--color-neutral);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.money-bar {
+  background-color: var(--color-accent-2);
+}
+
+.eco-bar {
+  background-color: var(--color-bg-secondary);
+}
+
+.happy-bar {
+  background-color: var(--color-accent-1);
+}
+
+.budget-system-brief {
+  margin-top: 30px;
+  padding: 18px;
+  background-color: var(--color-bg-secondary);
+  border: 3px dashed var(--color-dark-line);
+  border-radius: 18px;
+  font-weight: 700;
+}
+
+.budget-policy-panel p {
+  margin-bottom: 20px;
+}
+
+.budget-policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.budget-policy-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  background-color: var(--color-bg-main);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 22px;
+  padding: 18px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+  transition: all 0.2s ease;
+}
+
+.budget-policy-card:hover {
+  background-color: var(--color-bg-secondary);
+  transform: translateY(-2px);
+}
+
+.budget-policy-icon {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  background-color: var(--color-neutral);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.budget-policy-content {
+  flex: 1;
+}
+
+.budget-policy-content strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--color-dark-line);
+}
+
+.budget-policy-content small {
+  display: block;
+  margin-top: 5px;
+  color: var(--color-dark-line);
+  opacity: 0.8;
+}
+
+.budget-policy-content em {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--color-accent-1);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.budget-policy-arrow {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.budget-refresh-button {
+  width: 100%;
+  margin-top: 20px;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 14px 20px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
+.budget-refresh-button:hover {
+  background-color: var(--color-accent-1);
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .budget-game-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .budget-game-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .budget-game-card {
+    padding: 20px;
+    border-radius: 26px;
+  }
+
+  .budget-game-header {
+    padding: 22px;
+  }
+
+  .budget-game-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .budget-kpi-panel,
+  .budget-policy-panel {
+    padding: 20px;
+  }
+
+  .budget-policy-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .budget-policy-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.6rem;
+  }
+}
+
+/* ==========================================================
+   Home Carousel
+   ========================================================== */
+
+.home-carousel {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home-carousel-slide {
+  position: relative;
+  max-width: 1200px;
+  height: 520px;
+  margin: 0 auto;
+  border: 4px solid var(--color-dark-line);
+  border-radius: 36px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+}
+
+.home-carousel-overlay {
+  width: 100%;
+  height: 100%;
+  padding: 70px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    90deg,
+    rgba(28, 77, 79, 0.9),
+    rgba(28, 77, 79, 0.55),
+    rgba(28, 77, 79, 0.1)
+  );
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.home-carousel-tag {
+  background: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-weight: 900;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--color-dark-line);
+  margin-bottom: 18px;
+}
+
+.home-carousel h1 {
+  color: white;
+  font-size: clamp(2rem, 5vw, 4rem);
+  max-width: 720px;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 0 var(--color-dark-line);
+}
+
+.home-carousel p {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  max-width: 560px;
+  margin-bottom: 30px;
+}
+
+.home-carousel-button {
+  background: var(--color-accent-1);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 900;
+  padding: 14px 28px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
+.home-carousel-button:hover {
+  background: var(--color-accent-2);
+  color: var(--color-dark-line);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--color-dark-line);
+  background: var(--color-neutral);
+  color: var(--color-dark-line);
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--color-dark-line);
+}
+
+.carousel-arrow-left {
+  left: 18px;
+}
+
+.carousel-arrow-right {
+  right: 18px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid var(--color-dark-line);
+  background: var(--color-neutral);
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background: var(--color-accent-2);
+  transform: scale(1.25);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .home-carousel {
+    padding: 12px;
+  }
+
+  .home-carousel-slide {
+    height: 420px;
+    border-radius: 26px;
+    box-shadow: 4px 4px 0 var(--color-dark-line);
+  }
+
+  .home-carousel-overlay {
+    padding: 36px 24px;
+    background: linear-gradient(
+      180deg,
+      rgba(28, 77, 79, 0.85),
+      rgba(28, 77, 79, 0.65)
+    );
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-carousel h1 {
+    text-shadow: 2px 2px 0 var(--color-dark-line);
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.6rem;
+  }
+
+  .carousel-arrow-left {
+    left: 10px;
+  }
+
+  .carousel-arrow-right {
+    right: 10px;
+  }
+}
+
+/* ==========================================================
+   Quiz Showcase Section
+   ========================================================== */
+
+.quiz-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-bg-main);
+}
+
+.quiz-showcase-frame {
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: var(--color-neutral);
+  border: 5px solid var(--color-dark-line);
+  border-radius: 38px;
+  padding: 36px;
+  box-shadow: 10px 10px 0 var(--color-dark-line);
+}
+
+.quiz-header {
+  background-color: var(--color-bg-secondary);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.quiz-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-weight: 900;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--color-dark-line);
+  margin-bottom: 16px;
+}
+
+.quiz-header h2 {
+  margin: 0 0 12px;
+  font-size: 2.3rem;
+}
+
+.quiz-header p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.quiz-question-card {
+  background-color: white;
+  border: 4px solid var(--color-dark-line);
+  border-radius: 30px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 6px 6px 0 var(--color-dark-line);
+}
+
+.quiz-question-count {
+  display: inline-block;
+  margin-bottom: 18px;
+  background-color: var(--color-accent-2);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 900;
+}
+
+.quiz-question-card h3 {
+  font-size: 2rem;
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+
+.quiz-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.quiz-option-btn {
+  background-color: var(--color-bg-main);
+  color: var(--color-dark-line);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+  transition: all 0.2s ease;
+}
+
+.quiz-option-btn:hover {
+  background-color: var(--color-accent-2);
+  transform: translateY(-2px);
+}
+
+.quiz-feedback {
+  margin-top: 24px;
+  min-height: 34px;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.quiz-feedback.success {
+  color: #059669;
+}
+
+.quiz-feedback.error {
+  color: #dc2626;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .quiz-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .quiz-showcase-frame {
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: 5px 5px 0 var(--color-dark-line);
+  }
+
+  .quiz-header {
+    padding: 22px;
+  }
+
+  .quiz-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .quiz-question-card {
+    padding: 24px;
+  }
+
+  .quiz-question-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .quiz-options {
+    flex-direction: column;
+  }
+
+  .quiz-option-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================
+   Floating Eco Task Panel
+   ========================================================== */
+
+.eco-task-panel {
+  position: fixed;
+  right: 24px;
+  top: 140px;
+  width: 270px;
+  background-color: var(--color-neutral);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 26px;
+  padding: 18px;
+  box-shadow: 6px 6px 0 var(--color-dark-line);
+  z-index: 999;
+}
+
+.eco-task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-bg-secondary);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 18px;
+  padding: 12px;
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+
+.eco-task-header strong {
+  color: var(--color-accent-1);
+}
+
+.eco-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.eco-task-item {
+  display: grid;
+  grid-template-columns: 36px 1fr 32px;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border: 2px solid var(--color-dark-line);
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.eco-task-item.done {
+  background-color: var(--color-bg-secondary);
+}
+
+.eco-task-icon {
+  font-size: 1.5rem;
+}
+
+.eco-task-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.eco-task-item small {
+  font-weight: 900;
+  color: var(--color-accent-1);
+}
+
+.eco-task-check {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.eco-task-reward {
+  margin-top: 14px;
+  background-color: var(--color-accent-2);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 18px;
+  padding: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .eco-task-panel {
+    position: static;
+    width: auto;
+    margin: 20px 16px;
+  }
+}
+
+/* ==========================================================
+   Site Footer
+   ========================================================== */
+
+.site-footer {
+  background-color: #004d4b;
+  padding: 5rem 2rem;
+  margin-top: 4rem;
+}
+
+.footer-card {
+  max-width: 1230px;
+  margin: 0 auto;
+  background-color: #c8cca0;
+  color: #002f31;
+  border-radius: 22px;
+  padding: 56px 60px 28px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+  gap: 54px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer-logo-mark {
+  width: 58px;
+  height: 58px;
+  background-color: #002f31;
+  color: #c8cca0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.footer-logo h2 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 0.95;
+  color: #002f31;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 14px;
+  margin-top: 58px;
+}
+
+.footer-socials span {
+  width: 38px;
+  height: 38px;
+  border: 1.8px solid #002f31;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+.footer-address {
+  margin-top: 170px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+.footer-column h4,
+.footer-awards h4 {
+  margin: 0 0 24px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #002f31;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-column a {
+  color: #002f31;
+  margin-bottom: 18px;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.footer-column a:hover,
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+.footer-badge-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.footer-award-card {
+  width: 72px;
+  min-height: 86px;
+  background-color: #f1f1e8;
+  border-radius: 4px;
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 0.75rem;
+  box-sizing: border-box;
+}
+
+.footer-award-card span {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.footer-award-card strong,
+.footer-award-card small {
+  display: block;
+}
+
+.footer-award-card.gold {
+  background-color: #f7c243;
+  min-height: 112px;
+}
+
+.footer-bottom {
+  grid-column: 2 / 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 46px;
+  margin-top: 44px;
+}
+
+.footer-bottom a {
+  color: #002f31;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .footer-card {
+    grid-template-columns: 1fr;
+    padding: 34px 26px;
+    gap: 34px;
+  }
+
+  .footer-socials {
+    margin-top: 28px;
+  }
+
+  .footer-address {
+    margin-top: 36px;
+  }
+
+  .footer-bottom {
+    grid-column: auto;
+    gap: 18px;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================
+   Cookie Consent Banner
+   ========================================================== */
+.cookie-banner {
+  position: fixed;
+
+  left: 50%;
+  bottom: 24px;
+
+  transform: translateX(-50%);
+
+  width: min(700px, calc(100% - 40px));
+
+  background-color: var(--color-neutral);
+
+  border: 4px solid var(--color-dark-line);
+
+  border-radius: 22px;
+
+  padding: 18px;
+
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+
+  z-index: 9999;
+}
+
+.cookie-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.cookie-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.cookie-banner h3 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.cookie-banner p {
+  max-width: 520px;
+}
+
+.cookie-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cookie-btn {
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
+.cookie-btn.primary {
+  background-color: var(--color-accent-2);
+}
+
+.cookie-btn.secondary {
+  background-color: white;
+}
+
+/* 生物图鉴副页 */
+.page-hero {
+  max-width: 1100px;
+  margin: 4rem auto 2rem;
+  padding: 3rem 2rem;
+  background-color: var(--color-bg-secondary);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 34px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+  text-align: center;
+}
+
+.page-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.page-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+}
+
+.page-hero p {
+  font-size: 1.15rem;
 }

@@ -43,7 +43,7 @@ const MessageBoard = () => {
   // A. 注册诱导与提示视图
   if (view === 'PROMPT') {
     return (
-      <section className="card-style" style={{ textAlign: 'center', padding: '60px', backgroundColor: '#f0fdf4' }}>
+      <section className="card-style" style={{ textAlign: 'center', padding: '60px', backgroundColor: '#f0fdf4' }} id='message'>
         <h2 style={{ color: '#0D4D4D', marginBottom: '20px' }}>💬 生态守护者社区</h2>
         <p style={{ fontSize: '1.2rem', color: '#0D4D4D', maxWidth: '600px', margin: '0 auto 30px' }}>
           注册成为会员，发表你的环保心得，并获取拉夫堡生态大冒险的最新资讯！
