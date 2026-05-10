@@ -11,9 +11,11 @@ const BiodiversityPage = () => {
       <main>
         <section className="page-hero">
           <span className="page-badge">WILDLIFE ENCYCLOPEDIA</span>
-          <h1>🌿 拉夫堡生物图鉴</h1>
+
+          <h1>🌿 Loughborough Wildlife Encyclopedia</h1>
+
           <p>
-            在这里探索拉夫堡的本地动物、栖息地和生态价值。
+            Explore local wildlife, natural habitats and the ecological importance of species found around Loughborough.
           </p>
         </section>
 

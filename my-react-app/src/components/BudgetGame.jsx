@@ -1,130 +1,211 @@
 import React, { useState, useEffect } from 'react';
 
-const BudgetGame = ({ stats, setStats }) => {
+const BudgetGame = ({ stats, setStats, onPolicyMade }) => {
   const [currentOptions, setCurrentOptions] = useState([]);
   const [round, setRound] = useState(1);
-  const [lastAction, setLastAction] = useState('市长，请做出您的首个决策。');
+  const [lastAction, setLastAction] = useState('Mayor, make your first city decision.');
 
   const policyPool = [
-    { title: '建设M1高速绿色隔音带', icon: '🌲', money: -30, eco: 20, happy: 10, desc: '减少交通噪音，种植本地树种。' },
-    { title: '在大学城推行共享单车', icon: '🚲', money: -15, eco: 15, happy: 20, desc: '减少私家车排放，提高出行快乐度。' },
-    { title: '索尔河畔新建工业码头', icon: '🏗️', money: 50, eco: -25, happy: -10, desc: '增加就业，但会破坏河流生态。' },
-    { title: '建立社区屋顶菜园', icon: '🥕', money: -10, eco: 10, happy: 25, desc: '增强居民凝聚力，提供新鲜有机食物。' },
-    { title: '引进大型自动化仓储中心', icon: '📦', money: 70, eco: -30, happy: 5, desc: '巨大的经济收益，但带来光污染和噪音。' },
-    { title: "翻修女王公园 (Queen's Park)", icon: '⛲', money: -25, eco: 15, happy: 30, desc: '提升城市形象，为动物提供栖息地。' },
-    { title: '举办拉夫堡国际灯光节', icon: '✨', money: 40, eco: -15, happy: 25, desc: '吸引游客消费，但增加电力消耗和垃圾。' },
-    { title: '实施全城无人机垃圾巡检', icon: '🛸', money: -35, eco: 30, happy: 5, desc: '高科技环保，但维护成本极其昂贵。' },
-    {title: '建设城市太阳能屋顶计划',
-    icon: '☀️',
-    money: -40,
-    eco: 35,
-    happy: 15,
-    desc: '推广绿色能源，降低长期碳排放。'
-  },
-  {
-    title: '扩大停车场建设',
-    icon: '🅿️',
-    money: 35,
-    eco: -20,
-    happy: 5,
-    desc: '方便交通，但减少绿地面积。'
-  },
-  {
-    title: '建立野生动物保护区',
-    icon: '🦌',
-    money: -30,
-    eco: 40,
-    happy: 10,
-    desc: '保护本地生物多样性。'
-  },
-  {
-    title: '举办大型商业购物节',
-    icon: '🛍️',
-    money: 60,
-    eco: -15,
-    happy: 20,
-    desc: '带动消费，但增加垃圾与交通压力。'
-  },
-  {
-    title: '修建生态步行绿道',
-    icon: '🌳',
-    money: -20,
-    eco: 25,
-    happy: 30,
-    desc: '鼓励居民步行与户外活动。'
-  },
-  {
-    title: '开放夜间娱乐商业区',
-    icon: '🎉',
-    money: 45,
-    eco: -10,
-    happy: 25,
-    desc: '刺激夜间经济，但增加噪音。'
-  },
-  {
-    title: '升级城市污水处理系统',
-    icon: '💧',
-    money: -45,
-    eco: 40,
-    happy: 15,
-    desc: '改善河流水质与生态环境。'
-  },
-  {
-    title: '扩建高速公路出口',
-    icon: '🛣️',
-    money: 50,
-    eco: -20,
-    happy: 10,
-    desc: '改善物流效率，但增加空气污染。'
-  },
-  {
-    title: '建设城市共享花园',
-    icon: '🌼',
-    money: -15,
-    eco: 15,
-    happy: 35,
-    desc: '提升社区互动与绿色空间。'
-  },
-  {
-    title: '引进国际科技企业总部',
-    icon: '💻',
-    money: 80,
-    eco: -10,
-    happy: 15,
-    desc: '创造就业机会并提高财政收入。'
-  },
-  {
-    title: '恢复湿地生态工程',
-    icon: '🦆',
-    money: -35,
-    eco: 45,
-    happy: 10,
-    desc: '为水鸟和两栖动物提供安全栖息地。'
-  },
-  {
-    title: '举办河畔音乐嘉年华',
-    icon: '🎵',
-    money: 30,
-    eco: -10,
-    happy: 35,
-    desc: '吸引游客，但可能影响河流生态。'
-  },
-  {
-    title: '建立校园环保教育中心',
-    icon: '📚',
-    money: -20,
-    eco: 20,
-    happy: 25,
-    desc: '提高居民环保意识和社区参与度。'
-  },
-  {
-    title: '建设智能垃圾分类系统',
-    icon: '♻️',
-    money: -25,
-    eco: 30,
-    happy: 15,
-    desc: '提高垃圾回收效率，减少污染。'
-  }
+    {
+      title: 'Build Green Noise Barriers along the M1',
+      icon: '🌲',
+      money: -30,
+      eco: 20,
+      happy: 5,
+      desc: 'Reduces traffic noise and creates green corridors for wildlife.'
+    },
+    {
+      title: 'Launch Shared Bikes near the University',
+      icon: '🚲',
+      money: -15,
+      eco: 15,
+      happy: 15,
+      desc: 'Encourages low-carbon travel and makes short trips easier.'
+    },
+    {
+      title: 'Build an Industrial Dock near River Soar',
+      icon: '🏗️',
+      money: 60,
+      eco: -30,
+      happy: -20,
+      desc: 'Creates jobs but damages river habitats and increases pollution.'
+    },
+    {
+      title: 'Create Community Rooftop Gardens',
+      icon: '🥕',
+      money: -15,
+      eco: 15,
+      happy: 20,
+      desc: 'Provides local food and improves community wellbeing.'
+    },
+    {
+      title: 'Open a Large Automated Warehouse',
+      icon: '📦',
+      money: 75,
+      eco: -25,
+      happy: -10,
+      desc: 'Boosts the economy but increases traffic, noise and light pollution.'
+    },
+    {
+      title: "Renovate Queen's Park",
+      icon: '⛲',
+      money: -25,
+      eco: 20,
+      happy: 25,
+      desc: 'Improves public green space and supports local wildlife.'
+    },
+    {
+      title: 'Host a Large International Light Festival',
+      icon: '✨',
+      money: 40,
+      eco: -20,
+      happy: 10,
+      desc: 'Attracts visitors but increases electricity use and waste.'
+    },
+    {
+      title: 'Use Drones for City Waste Monitoring',
+      icon: '🛸',
+      money: -35,
+      eco: 25,
+      happy: -5,
+      desc: 'Improves waste control but raises cost and privacy concerns.'
+    },
+    {
+      title: 'Install Solar Panels on Public Buildings',
+      icon: '☀️',
+      money: -40,
+      eco: 35,
+      happy: 5,
+      desc: 'Cuts long-term carbon emissions but requires high upfront spending.'
+    },
+    {
+      title: 'Expand Town Centre Car Parks',
+      icon: '🅿️',
+      money: 35,
+      eco: -25,
+      happy: -10,
+      desc: 'Helps drivers but removes green space and encourages more cars.'
+    },
+    {
+      title: 'Create a Wildlife Protection Zone',
+      icon: '🦌',
+      money: -30,
+      eco: 40,
+      happy: 5,
+      desc: 'Protects biodiversity but limits some development opportunities.'
+    },
+    {
+      title: 'Hold a Large Shopping Festival',
+      icon: '🛍️',
+      money: 60,
+      eco: -20,
+      happy: 5,
+      desc: 'Increases spending but creates waste and transport pressure.'
+    },
+    {
+      title: 'Build an Eco Walking Trail',
+      icon: '🌳',
+      money: -20,
+      eco: 25,
+      happy: 25,
+      desc: 'Encourages walking, outdoor activity and nature learning.'
+    },
+    {
+      title: 'Open a Night-time Entertainment District',
+      icon: '🎉',
+      money: 45,
+      eco: -10,
+      happy: -15,
+      desc: 'Grows the night economy but causes noise and resident complaints.'
+    },
+    {
+      title: 'Upgrade the Wastewater Treatment System',
+      icon: '💧',
+      money: -45,
+      eco: 40,
+      happy: 5,
+      desc: 'Improves water quality and protects the River Soar ecosystem.'
+    },
+    {
+      title: 'Expand a Major Road Junction',
+      icon: '🛣️',
+      money: 50,
+      eco: -25,
+      happy: -15,
+      desc: 'Improves logistics but increases air pollution and congestion.'
+    },
+    {
+      title: 'Build Community Flower Gardens',
+      icon: '🌼',
+      money: -15,
+      eco: 15,
+      happy: 30,
+      desc: 'Improves neighbourhood pride and supports pollinators.'
+    },
+    {
+      title: 'Attract an International Tech Headquarters',
+      icon: '💻',
+      money: 80,
+      eco: -10,
+      happy: -5,
+      desc: 'Creates jobs but increases pressure on housing and transport.'
+    },
+    {
+      title: 'Restore Wetland Habitats',
+      icon: '🦆',
+      money: -35,
+      eco: 45,
+      happy: 5,
+      desc: 'Provides safe habitats for birds, frogs and aquatic wildlife.'
+    },
+    {
+      title: 'Host a Riverside Music Carnival',
+      icon: '🎵',
+      money: 30,
+      eco: -15,
+      happy: -5,
+      desc: 'Brings tourism income but may disturb river wildlife and residents.'
+    },
+    {
+      title: 'Build an Eco Education Centre',
+      icon: '📚',
+      money: -20,
+      eco: 20,
+      happy: 15,
+      desc: 'Teaches children and families how to make greener choices.'
+    },
+    {
+      title: 'Install Smart Recycling Bins',
+      icon: '♻️',
+      money: -25,
+      eco: 30,
+      happy: 5,
+      desc: 'Improves recycling efficiency and reduces street waste.'
+    },
+    {
+      title: 'Raise Local Environmental Taxes',
+      icon: '💷',
+      money: 45,
+      eco: 15,
+      happy: -30,
+      desc: 'Funds green projects but many residents dislike higher taxes.'
+    },
+    {
+      title: 'Restrict Cars in the Town Centre',
+      icon: '🚫',
+      money: -10,
+      eco: 30,
+      happy: -20,
+      desc: 'Improves air quality but frustrates drivers and some businesses.'
+    },
+    {
+      title: 'Close a Polluting Factory',
+      icon: '🏭',
+      money: -35,
+      eco: 35,
+      happy: -25,
+      desc: 'Reduces pollution but causes job losses in the short term.'
+    }
   ];
 
   const refreshOptions = () => {
@@ -139,60 +220,60 @@ const BudgetGame = ({ stats, setStats }) => {
   const getCityEnding = () => {
     if (stats.money <= 0) {
       return {
-        title: '财政破产',
+        title: 'Financial Crisis',
         icon: '💸',
         type: 'danger',
-        text: '城市资金耗尽，许多环保计划无法继续推进。你需要通过知识挑战赚取更多建设基金。'
+        text: 'The city has run out of money and cannot continue many public projects.'
       };
     }
 
     if (stats.eco <= 25) {
       return {
-        title: '污染危机',
+        title: 'Pollution Crisis',
         icon: '🏭',
         type: 'danger',
-        text: '生态指数过低，河流、绿地和野生动物都面临严重压力。'
+        text: 'The environment is under serious pressure, and wildlife habitats are at risk.'
       };
     }
 
     if (stats.eco >= 80 && stats.happy >= 70) {
       return {
-        title: '生态城市',
+        title: 'Eco City',
         icon: '🌿',
         type: 'success',
-        text: '城市在生态保护和居民生活之间找到了优秀平衡。'
+        text: 'The city has achieved a strong balance between nature and community wellbeing.'
       };
     }
 
     if (stats.money >= 180 && stats.eco < 60) {
       return {
-        title: '经济城市',
+        title: 'Economic City',
         icon: '🏙️',
         type: 'warning',
-        text: '城市经济增长很快，但生态保护仍需要更多投入。'
+        text: 'The city is financially strong, but environmental protection needs more attention.'
       };
     }
 
     if (stats.happy >= 85) {
       return {
-        title: '高幸福社区',
+        title: 'High-Happiness Community',
         icon: '😊',
         type: 'success',
-        text: '居民生活满意度很高，社区凝聚力正在增强。'
+        text: 'Residents are very satisfied, but long-term sustainability still matters.'
       };
     }
 
     return {
-      title: '平衡发展中',
+      title: 'Balanced Development',
       icon: '⚖️',
       type: 'normal',
-      text: '城市仍在探索财政、生态和幸福感之间的最佳平衡。'
+      text: 'The city is still trying to balance money, ecology and public happiness.'
     };
   };
 
   const handleDecision = (policy) => {
     if (stats.money + policy.money < 0) {
-      alert('资金不足！我们需要先通过问答游戏赢取建设经费。');
+      alert('Not enough money. Try earning more funds through the quiz first.');
       return;
     }
 
@@ -202,8 +283,12 @@ const BudgetGame = ({ stats, setStats }) => {
       happy: Math.max(0, Math.min(100, prev.happy + policy.happy))
     }));
 
-    setLastAction(`第${round}轮决策：执行了“${policy.title}”。影响力已更新。`);
+    setLastAction(`Round ${round}: You selected "${policy.title}". City indicators have changed.`);
     setRound(prev => prev + 1);
+
+    if (onPolicyMade) {
+      onPolicyMade();
+    }
   };
 
   const cityEnding = getCityEnding();
@@ -212,21 +297,19 @@ const BudgetGame = ({ stats, setStats }) => {
     <section className="budget-game-section">
       <div className="budget-game-card">
         <div className="budget-game-header">
-          <div>
-            <span className="budget-game-badge">LOUGHBOROUGH 2026</span>
-            <h2>🏛️ 拉夫堡市长：战略仪表盘</h2>
-            <p>第 {round} 轮：在不确定性中寻找城市平衡点</p>
-          </div>
+          <span className="budget-game-badge">LOUGHBOROUGH 2026</span>
+          <h2>🏛️ Loughborough Mayor Dashboard</h2>
+          <p>Round {round}: Find balance in uncertain city decisions.</p>
         </div>
 
         <div className="budget-game-layout">
           <div className="budget-kpi-panel">
-            <h3>📊 城市关键绩效指标</h3>
+            <h3>📊 City Key Performance Indicators</h3>
 
             <div className="budget-bars">
               <div className="bar-group">
                 <div className="bar-label">
-                  <span>💰 财政预算</span>
+                  <span>💰 City Budget</span>
                   <strong>${stats.money}</strong>
                 </div>
                 <div className="bar-track">
@@ -239,7 +322,7 @@ const BudgetGame = ({ stats, setStats }) => {
 
               <div className="bar-group">
                 <div className="bar-label">
-                  <span>🌿 生态指数</span>
+                  <span>🌿 Ecology Score</span>
                   <strong>{stats.eco}/100</strong>
                 </div>
                 <div className="bar-track">
@@ -252,7 +335,7 @@ const BudgetGame = ({ stats, setStats }) => {
 
               <div className="bar-group">
                 <div className="bar-label">
-                  <span>😊 居民福祉</span>
+                  <span>😊 Public Happiness</span>
                   <strong>{stats.happy}/100</strong>
                 </div>
                 <div className="bar-track">
@@ -265,16 +348,14 @@ const BudgetGame = ({ stats, setStats }) => {
             </div>
 
             <div className="budget-system-brief">
-              💬 系统简报：{lastAction}
+              💬 System Brief: {lastAction}
             </div>
 
             <div className={`city-ending-card ${cityEnding.type}`}>
-              <div className="city-ending-icon">
-                {cityEnding.icon}
-              </div>
+              <div className="city-ending-icon">{cityEnding.icon}</div>
 
               <div>
-                <span>当前城市结局</span>
+                <span>Current City Ending</span>
                 <h4>{cityEnding.title}</h4>
                 <p>{cityEnding.text}</p>
               </div>
@@ -282,9 +363,10 @@ const BudgetGame = ({ stats, setStats }) => {
           </div>
 
           <div className="budget-policy-panel">
-            <h3>🏢 政策办公室</h3>
+            <h3>🏢 Policy Office</h3>
             <p>
-              选择一个政策并观察它对城市财政、生态和居民幸福感的影响。
+              Choose one policy and observe how it changes the city budget,
+              ecology and public happiness.
             </p>
 
             <div className="budget-policy-list">
@@ -300,7 +382,7 @@ const BudgetGame = ({ stats, setStats }) => {
                     <strong>{option.title}</strong>
                     <small>{option.desc}</small>
                     <em>
-                      {option.money < 0 ? '需要预算投入' : '可带来财政收益'}
+                      {option.money < 0 ? 'Requires investment' : 'Generates income'}
                     </em>
                   </span>
 
@@ -310,7 +392,7 @@ const BudgetGame = ({ stats, setStats }) => {
             </div>
 
             <button className="budget-refresh-button" onClick={refreshOptions}>
-              🔄 换一批政策顾问
+              🔄 Ask New Policy Advisors
             </button>
           </div>
         </div>

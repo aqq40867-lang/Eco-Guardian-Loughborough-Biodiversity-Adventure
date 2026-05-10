@@ -1,56 +1,64 @@
 import React, { useState } from 'react';
 
+import FoxImg from '../assets/Mammals/Fox.jpg';
+import FerretImg from '../assets/Mammals/Ferret.jpg';
+import DeerImg from '../assets/Mammals/Deer.jpg';
+import SquirrelImg from '../assets/Mammals/Squirrel.jpg';
+import RabbitImg from '../assets/Mammals/Rabbit.jpg';
+import WaterVoleImg from '../assets/Mammals/WaterVole.jpg';
+import WoodMouseImg from '../assets/Mammals/WoodMouse.jpg';
+
+import LapwingImg from '../assets/Birds/Lapwing.jpg';
+import MallardImg from '../assets/Birds/Mallard.jpg';
+import MandarinImg from '../assets/Birds/Mandarin.jpg';
+import AvocetImg from '../assets/Birds/Avocet.jpg';
+import BuzzardImg from '../assets/Birds/Buzzard.jpg';
+import MuteSwan from '../assets/Birds/MuteSwan.jpg';
+import PeregrineFalconImg from '../assets/Birds/PeregrineFalcon.jpg';
+
+import CommonLizardImg from '../assets/AmphibiansReptiles/CommonLizard.jpg';
+import CommonToadImg from '../assets/AmphibiansReptiles/CommonToad.jpg';
+import GrassSnakeImg from '../assets/AmphibiansReptiles/GrassSnake.jpg';
+import GreatCrestedNewtImg from '../assets/AmphibiansReptiles/GreatCrestedNewt.jpg';
+import RedEaredTerrapinImg from '../assets/AmphibiansReptiles/RedEaredTerrapin.jpg';
+import CommonFrog from '../assets/AmphibiansReptiles/CommonFrog.jpg';
+
 const BiodiversityGallery = ({ onViewAnimal }) => {
-  const [activeTab, setActiveTab] = useState('哺乳类');
+  const [activeTab, setActiveTab] = useState('Mammals');
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const speciesData = {
-    哺乳类: [
-      { name: 'Red Fox', fact: '深夜猎手，平衡生态。', img: '🦊', color: '#D6E8B1', link: '#fox' },
-      { name: 'European Badger', fact: '森林里的地下建筑师。', img: '🦡', color: '#B4D3D8', link: '#badger' },
-      { name: 'European Hedgehog', fact: '花园里的除虫小能手。', img: '🦔', color: '#F1F1E8', link: '#hedgehog' },
-      { name: 'Water Vole', fact: '索尔河畔的游泳健将。', img: '🐭', color: '#F7C243', link: '#vole' },
-      { name: 'Grey Squirrel', fact: '树林间的灵巧攀爬者。', img: '🐿️', color: '#D6E8B1', link: '#squirrel' },
-      { name: 'Roe Deer', fact: '害羞的林间舞者。', img: '🦌', color: '#B4D3D8', link: '#deer' }
+    Mammals: [
+      { name: 'Red Fox', fact: 'A clever hunter of the night', img: FoxImg, color: '#D6E8B1', link: '#fox' },
+      { name: 'Ferret', fact: 'Quick and agile underground explorer', img: FerretImg, color: '#B4D3D8', link: '#ferret' },
+      { name: 'Fallow Deer', fact: 'A gentle animal of woodland parks', img: DeerImg, color: '#F1F1E8', link: '#fallow-deer' },
+      { name: 'Grey Squirrel', fact: 'An energetic climber and food collector', img: SquirrelImg, color: '#F7C243', link: '#squirrel' },
+      { name: 'Wild Rabbit', fact: 'A fast runner of open grasslands', img: RabbitImg, color: '#D6E8B1', link: '#rabbit' },
+      { name: 'Water Vole', fact: 'A shy creature living near rivers', img: WaterVoleImg, color: '#B4D3D8', link: '#deer' },
+      { name: 'Wood Mouse', fact: 'A tiny forest animal active at night', img: WoodMouseImg, color: '#F7C243', link: '#wood-mouse' },
     ],
-    鸟类: [
-      { name: 'Skylark', fact: '草地上的歌唱家。', img: '🐦', color: '#B4D3D8', link: '#skylark' },
-      { name: 'Sedge warbler', fact: '芦苇丛中的隐士。', img: '🐦', color: '#D6E8B1', link: '#warbler' },
-      { name: 'Reed bunting', fact: '河道边的优雅守护者。', img: '🐦', color: '#F1F1E8', link: '#bunting' },
-      { name: 'Kingfisher', fact: '水面上的蓝色闪电。', img: '🐦', color: '#E8714C', link: '#kingfisher' },
-      { name: 'Grey Wagtail', fact: '溪流边的灵动精灵。', img: '🐦', color: '#F7C243', link: '#wagtail' },
-      { name: 'Common Moorhen', fact: '水面上的黑羽探险家。', img: '🦆', color: '#D6E8B1', link: '#moorhen' }
+    Birds: [
+      { name: 'Northern Lapwing', fact: 'A graceful bird of open wetlands', img: LapwingImg, color: '#B4D3D8', link: '#lapwing' },
+      { name: 'Mallard Duck', fact: 'A common duck often seen on rivers', img: MallardImg, color: '#D6E8B1', link: '#mallard' },
+      { name: 'Mandarin Duck', fact: 'Known for its colourful feathers', img: MandarinImg, color: '#F1F1E8', link: '#mandarin-duck' },
+      { name: 'Pied Avocet', fact: 'A striking wading bird with a curved bill', img: AvocetImg, color: '#E8714C', link: '#avocet' },
+      { name: 'Common Buzzard', fact: 'A soaring bird of prey with sharp eyesight', img: BuzzardImg, color: '#F7C243', link: '#buzzard' },
+      { name: 'Mute Swan', fact: 'An elegant bird often found on lakes', img: MuteSwan, color: '#D6E8B1', link: '#mute-swan' },
+      { name: 'Peregrine Falcon', fact: 'One of the fastest birds in the world', img: PeregrineFalconImg, color: '#B4D3D8', link: '#falcon' },
     ],
     'Amphibians & Reptiles': [
-      { name: 'Common Frog', fact: '夜晚的绿色歌手。', img: '🐸', color: '#B4D3D8', link: '#frog' },
-      { name: 'Common Toad', fact: '草丛中的稳重行者。', img: '🐸', color: '#D6E8B1', link: '#toad' },
-      { name: 'Smooth Newt', fact: '池塘里的优雅泳者。', img: '🦎', color: '#F1F1E8', link: '#s-newt' },
-      { name: 'Great Crested Newt', fact: '身披“战甲”的珍稀精灵。', img: '🦎', color: '#E8714C', link: '#g-newt' },
-      { name: 'Grass Snake', fact: '水边的绿色潜伏者。', img: '🐍', color: '#F7C243', link: '#snake' },
-      { name: 'Red-eared Slider', fact: '坚硬外壳下的探险家。', img: '🐢', color: '#D6E8B1', link: '#turtle' }
+      { name: 'Common Lizard', fact: 'A sun-loving reptile often seen on rocks', img: CommonLizardImg, color: '#B4D3D8', link: '#lizard' },
+      { name: 'Common Toad', fact: 'A slow-moving amphibian found in damp habitats', img: CommonToadImg, color: '#D6E8B1', link: '#toad' },
+      { name: 'Grass Snake', fact: 'A harmless snake that lives near water', img: GrassSnakeImg, color: '#F1F1E8', link: '#grass-snake' },
+      { name: 'Great Crested Newt', fact: 'A rare newt with a distinctive spiky crest', img: GreatCrestedNewtImg, color: '#E8714C', link: '#great-crested-newt' },
+      { name: 'Red-eared Terrapin', fact: 'A freshwater turtle with bright red markings', img: RedEaredTerrapinImg, color: '#F7C243', link: '#red-eared-terrapin' },
+      { name: 'Common Frog', fact: 'A familiar amphibian with a croaking call', img: CommonFrog, color: '#B4D3D8', link: '#common-frog' },
     ],
-    昆虫类: [
-      { name: 'Peacock Butterfly', fact: '翅膀上有“眼睛”的舞者。', img: '🦋', color: '#F7C243', link: '#peacock' },
-      { name: 'Red Admiral', fact: '花丛中的红色统帅。', img: '🦋', color: '#D6E8B1', link: '#admiral' },
-      { name: 'Common Blue', fact: '草地上的蓝色精灵。', img: '🦋', color: '#B4D3D8', link: '#blue' },
-      { name: 'Small Tortoiseshell', fact: '花园里的橙色精灵。', img: '🦋', color: '#F1F1E8', link: '#tortoise' },
-      { name: 'Comma Butterfly', fact: '翅膀边缘像锯齿的蝴蝶。', img: '🦋', color: '#E8714C', link: '#comma' },
-      { name: 'Green-veined White', fact: '轻盈的白色飞行者。', img: '🦋', color: '#D6E8B1', link: '#white' }
-    ]
   };
 
   const cardsToShow = 6;
+  const activeData = speciesData[activeTab];
 
-  const activeData = [
-    ...speciesData[activeTab],
-    {
-      isMore: true,
-      name: '发现更多',
-      img: '🔍',
-      color: '#E8714C',
-      link: '#education'
-    }
-  ];
 
   const maxIndex = Math.max(0, activeData.length - cardsToShow);
 
@@ -77,84 +85,96 @@ const BiodiversityGallery = ({ onViewAnimal }) => {
     setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
   };
 
-  return (
-    <section className="biodiversity-section" id="biodiversity">
-      <div className="gallery-showcase-frame">
-        <div className="gallery-showcase-header">
-          <span className="gallery-badge">LOUGHBOROUGH WILDLIFE</span>
 
-          <h2>🌿 拉夫堡全景物种图鉴</h2>
+    return (
+  <section className="biodiversity-section" id="biodiversity">
+    <div className="gallery-showcase-frame">
+      <div className="gallery-showcase-header">
+        <span className="gallery-badge">LOUGHBOROUGH WILDLIFE</span>
 
-          <p>
-            探索拉夫堡周边最具代表性的野生动物，了解它们的习性、栖息地与生态价值。
-          </p>
-        </div>
+        <h2>🌿 Loughborough Wildlife Explorer</h2>
 
-        <div className="gallery-tabs">
-          {Object.keys(speciesData).map(cat => (
-            <button
-              key={cat}
-              onClick={() => handleTabChange(cat)}
-              className={`gallery-tab ${activeTab === cat ? 'active' : ''}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        <p>
+          Discover some of the most iconic wildlife species around Loughborough and learn about their habitats, behaviours, and ecological importance.
+        </p>
+      </div>
 
-        <div className="gallery-carousel">
-          {currentIndex > 0 && (
-            <button
-              onClick={goPrev}
-              className="gallery-arrow gallery-arrow-left"
-              aria-label="Previous species"
-            >
-              ←
-            </button>
-          )}
+      <div className="gallery-tabs">
+        {Object.keys(speciesData).map(cat => (
+          <button
+            key={cat}
+            onClick={() => handleTabChange(cat)}
+            className={`gallery-tab ${activeTab === cat ? 'active' : ''}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
-          <div className="gallery-viewport">
-            <div
-              className="gallery-track"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
-              }}
-            >
-              {activeData.map((item, index) => (
-                <div key={index} className="gallery-card-shell">
-                  <button
-                    className={`species-card ${item.isMore ? 'species-card-more' : ''}`}
-                    style={{ backgroundColor: item.color || '#fff' }}
-                    onClick={() => handleCardClick(item.link)}
-                  >
-                    <span className="species-icon">{item.img}</span>
+      <div className="gallery-carousel">
+        {currentIndex > 0 && (
+          <button
+            onClick={goPrev}
+            className="gallery-arrow gallery-arrow-left"
+            aria-label="Previous species"
+          >
+            ←
+          </button>
+        )}
 
-                    <strong>{item.name}</strong>
+        <div className="gallery-viewport">
+          <div
+            className="gallery-track"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
+            }}
+          >
+            {activeData.map((item, index) => (
+              <div key={index} className="gallery-card-shell">
+                <button
+                  className={`species-card ${item.isMore ? 'species-card-more' : ''}`}
+                  style={{ backgroundColor: item.color || '#fff' }}
+                  onClick={() => handleCardClick(item.link)}
+                >
+                  {!item.isMore ? (
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="species-image"
+                    />
+                  ) : (
+                    <div className="species-more-icon">🔍</div>
+                  )}
 
-                    {!item.isMore && <p>{item.fact}</p>}
+                  <div className="species-content">
+                    <div>
+                      <strong>{item.name}</strong>
+                      {!item.isMore && <p>{item.fact}</p>}
+                    </div>
 
                     <span className="species-card-action">
                       {item.isMore ? 'Discover More' : 'View Detail'}
                     </span>
-                  </button>
-                </div>
-              ))}
-            </div>
+                  </div>
+                </button>
+              </div>
+            ))}
           </div>
-
-          {currentIndex < maxIndex && (
-            <button
-              onClick={goNext}
-              className="gallery-arrow gallery-arrow-right"
-              aria-label="Next species"
-            >
-              →
-            </button>
-          )}
         </div>
+
+        {currentIndex < maxIndex && (
+          <button
+            onClick={goNext}
+            className="gallery-arrow gallery-arrow-right"
+            aria-label="Next species"
+          >
+            →
+          </button>
+        )}
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 };
 
 export default BiodiversityGallery;

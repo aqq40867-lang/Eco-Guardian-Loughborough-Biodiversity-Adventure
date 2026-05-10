@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import RiverImg from '../assets/Print/River.jpg';
+import ParkImg from '../assets/Print/Park.jpg';
+import ForestImg from '../assets/Print/Forest.jpg';
 
 const slides = [
   {
-    image: '/images/slide-1.jpg',
-    title: 'Explore Loughborough’s Green Future',
-    subtitle: 'Learn how nature, people and city planning can grow together.',
+    image: ParkImg,
+    title: 'Explore Loughborough’s Green Spaces',
+    subtitle: 'Discover parks, local wildlife and the natural beauty across Loughborough.',
     tag: 'Eco Adventure'
   },
   {
-    image: '/images/slide-2.jpg',
-    title: 'Protect Local Biodiversity',
-    subtitle: 'Discover animals, habitats and daily actions that make a difference.',
-    tag: 'Biodiversity'
+    image: ForestImg,
+    title: 'Discover Forest Biodiversity',
+    subtitle: 'Explore woodland habitats and learn how animals and plants live together.',
+    tag: 'Woodland Wildlife'
   },
   {
-    image: '/images/slide-3.jpg',
-    title: 'Make Smart City Decisions',
-    subtitle: 'Balance money, ecology and happiness as the mayor of Loughborough.',
-    tag: 'Interactive Learning'
+    image: RiverImg,
+    title: 'Protect Local Waterways',
+    subtitle: 'Learn how rivers and wetlands support wildlife and healthy ecosystems.',
+    tag: 'River Ecology'
   }
 ];
 

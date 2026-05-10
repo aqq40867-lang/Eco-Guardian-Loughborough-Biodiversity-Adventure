@@ -1,160 +1,365 @@
 /* ==========================================================
-   0. 颜色变量定义 (Theme Colors)
+   0. Theme Variables
+   Global color palette used across the whole website.
    ========================================================== */
+
 :root {
-    --color-bg-main: #B4D3D8;       /* 网页大背景、页眉底色 */
-    --color-bg-secondary: #D6E8B1;  /* 重点区域、次级板块、卡片底色 */
-    --color-accent-1: #E8714C;      /* 主按钮、重要提示、CTA */
-    --color-accent-2: #F7C243;      /* 图标、悬停效果、点缀性元素 */
-    --color-dark-line: #1C4D4F;     /* 标题文字、导航栏文字、图标轮廓 */
-    --color-neutral: #F1F1E8;       /* 文字录入框、卡片背景、页面分割线 */
+  --color-bg-main: #B4D3D8;
+  --color-bg-secondary: #D6E8B1;
+  --color-accent-1: #E8714C;
+  --color-accent-2: #F7C243;
+  --color-dark-line: #1C4D4F;
+  --color-neutral: #F1F1E8;
 }
 
 /* ==========================================================
-   1. 全局基础样式 (Global & Typography)
+   1. Global Styles
+   Basic page layout, typography, and common elements.
    ========================================================== */
-body {
-    background-color: var(--color-bg-main);
-    color: var(--color-dark-line);
-    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Nunito', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+
+html {
+  scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4 {
-    color: var(--color-dark-line);
-    margin-top: 0;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-main);
+  color: var(--color-dark-line);
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Nunito', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  color: var(--color-dark-line);
 }
 
 a {
-    color: var(--color-dark-line);
-    text-decoration: none;
+  color: var(--color-dark-line);
+  text-decoration: none;
 }
 
-/* 通用按钮样式 */
-.btn-primary {
-    display: inline-block;
-    background-color: var(--color-accent-1);
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: 3px solid var(--color-dark-line);
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0px var(--color-dark-line);
-    transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-accent-2);
-    color: var(--color-dark-line);
-    transform: translateY(2px);
-    box-shadow: 2px 2px 0px var(--color-dark-line);
+button,
+input {
+  font-family: inherit;
 }
 
 /* ==========================================================
-   2. 导航栏 (Navigation Bar)
+   2. Reusable UI Components
+   Shared buttons, cards, and form inputs.
+   ========================================================== */
+
+.btn-primary,
+.btn-kid {
+  display: inline-block;
+  background-color: var(--color-accent-1);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 900;
+  padding: 12px 24px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-kid:hover {
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  transform: translateY(-2px);
+}
+
+.card-style {
+  background-color: var(--color-neutral);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 30px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+}
+
+.input-style {
+  padding: 12px 16px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 16px;
+  font-size: 1rem;
+  color: var(--color-dark-line);
+  background-color: white;
+}
+
+/* ==========================================================
+   3. Navigation Bar
+   Sticky pill-shaped navigation used on all pages.
    ========================================================== */
 
 .navbar-pill {
-    /* 背景 */
-    background-color: var(--color-neutral);
-    border-bottom: 3px solid var(--color-dark-line);
-    border-radius: 50px; /* 打造完美的胶囊两端圆角 */
+  position: sticky;
+  top: 20px;
+  z-index: 1000;
 
-    padding: 10px 25px;
-    position: sticky;
-    margin: 20px auto; /* 上下留白，左右居中，产生悬浮感 */
-    max-width: 1100px;
-    width: 90%; /* 适配小屏幕 */
+  max-width: 1100px;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px 25px;
 
-    display: flex;
-    justify-content: space-between; /* Logo在左，链接在中，按钮在右 */
-    align-items: center;
-
-    position: sticky; /* 依然保持滚动时吸顶 */
-    top: 20px; /* 吸顶时距离顶部留出20px空隙，保持悬浮效果 */
-    z-index: 1000;
-    box-shadow: 4px 4px 0px var(--color-dark-line); /* 硬阴影增强立体感 */
+  background-color: var(--color-neutral);
+  border-bottom: 3px solid var(--color-dark-line);
+  border-radius: 50px;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* 左侧 Logo 样式 */
 .nav-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: var(--color-accent-2);
-    padding: 5px 15px;
-    border: 2px solid var(--color-dark-line);
-    border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  background-color: var(--color-accent-2);
+  padding: 5px 15px;
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
 }
 
-/* 中间链接列表 */
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--color-dark-line);
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 2px solid transparent;
-    transition: all 0.2s ease;
+  color: var(--color-dark-line);
+  font-size: 1.1rem;
+  font-weight: 900;
+  padding: 10px 22px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  transition: all 0.2s ease;
 }
 
-/* 右侧醒目按钮 (模仿截图的黄色按钮) */
+.nav-links a:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-dark-line);
+}
+
+.nav-active {
+  background-color: var(--color-accent-2);
+  border: 2px solid var(--color-dark-line) !important;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
 .nav-register {
-    background-color: var(--color-accent-2); /* 使用你的亮黄色点睛色 */
-    color: var(--color-dark-line);
-    font-weight: 900;
-    font-size: 1.1rem;
-    padding: 10px 24px;
-    border-radius: 30px;
-    border: 2px solid var(--color-dark-line);
-    text-transform: uppercase;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 10px 24px;
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
 .nav-register:hover {
-    transform: translateY(-2px);
-    box-shadow: 3px 3px 0px var(--color-dark-line);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--color-dark-line);
 }
-
-/* 链接悬停与激活状态 */
-.nav-links a:hover {
-    background-color: var(--color-bg-secondary);
-    border-color: var(--color-dark-line);
-}
-
-.nav-links a.active {
-    background-color: var(--color-accent-1);
-    color: white;
-    border-color: var(--color-dark-line);
-    box-shadow: 2px 2px 0px var(--color-dark-line);
-}
-
 
 /* ==========================================================
-   4. 科普画廊区 (Education Section - Animals)
+   4. Page Hero
+   Shared hero block for secondary pages.
    ========================================================== */
+
+.page-hero {
+  max-width: 1100px;
+  margin: 4rem auto 2rem;
+  padding: 3rem 2rem;
+
+  background-color: var(--color-bg-secondary);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 34px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+
+  text-align: center;
+}
+
+.page-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.page-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+}
+
+.page-hero p {
+  font-size: 1.15rem;
+}
+
 /* ==========================================================
-   Biodiversity Gallery Showcase
+   5. Home Carousel
+   Large image carousel used on the homepage.
+   ========================================================== */
+
+.home-carousel {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home-carousel-slide {
+  position: relative;
+  max-width: 1200px;
+  height: 520px;
+  margin: 0 auto;
+
+  background-size: cover;
+  background-position: center;
+
+  border: 4px solid var(--color-dark-line);
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+}
+
+.home-carousel-overlay {
+  width: 100%;
+  height: 100%;
+  padding: 70px;
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    90deg,
+    rgba(28, 77, 79, 0.9),
+    rgba(28, 77, 79, 0.55),
+    rgba(28, 77, 79, 0.1)
+  );
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.home-carousel-tag {
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  font-weight: 900;
+  padding: 8px 18px;
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.home-carousel h1 {
+  max-width: 720px;
+  margin-bottom: 20px;
+
+  color: white;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  text-shadow: 3px 3px 0 var(--color-dark-line);
+}
+
+.home-carousel p {
+  max-width: 560px;
+  margin-bottom: 30px;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+}
+
+.home-carousel-button {
+  background-color: var(--color-accent-1);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 900;
+  padding: 14px 28px;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
+.home-carousel-button:hover {
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 48px;
+  height: 48px;
+
+  background-color: var(--color-neutral);
+  color: var(--color-dark-line);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 50%;
+
+  font-size: 2rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--color-dark-line);
+}
+
+.carousel-arrow-left {
+  left: 18px;
+}
+
+.carousel-arrow-right {
+  right: 18px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid var(--color-dark-line);
+  background-color: var(--color-neutral);
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background-color: var(--color-accent-2);
+  transform: scale(1.25);
+}
+
+/* ==========================================================
+   6. Biodiversity Gallery
+   Wildlife cards, category tabs, carousel layout, and images.
    ========================================================== */
 
 .biodiversity-section {
@@ -166,6 +371,7 @@ a {
   max-width: 1400px;
   margin: 0 auto;
   padding: 34px;
+
   background-color: var(--color-neutral);
   border: 5px solid var(--color-dark-line);
   border-radius: 38px;
@@ -174,10 +380,12 @@ a {
 
 .gallery-showcase-header {
   margin-bottom: 28px;
+  padding: 28px;
+
   background-color: var(--color-bg-secondary);
   border: 3px solid var(--color-dark-line);
   border-radius: 28px;
-  padding: 28px;
+
   text-align: center;
 }
 
@@ -187,8 +395,8 @@ a {
   color: var(--color-dark-line);
   font-weight: 900;
   padding: 8px 18px;
-  border-radius: 999px;
   border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
   margin-bottom: 16px;
 }
 
@@ -198,9 +406,9 @@ a {
 }
 
 .gallery-showcase-header p {
+  max-width: 760px;
   margin: 0 auto;
   font-size: 1.1rem;
-  max-width: 760px;
   line-height: 1.7;
 }
 
@@ -240,6 +448,7 @@ a {
 
 .gallery-track {
   display: flex;
+  align-items: stretch;
   transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -247,20 +456,26 @@ a {
   min-width: 16.6666%;
   padding: 0 8px;
   box-sizing: border-box;
+
+  display: flex;
 }
 
 .species-card {
   width: 100%;
-  height: 350px;
+  min-height: 420px;
+  padding: 14px;
+
+  background-color: white;
   border: 3px solid var(--color-dark-line);
   border-radius: 24px;
-  padding: 26px 16px;
-  text-align: center;
-  cursor: pointer;
   box-shadow: 5px 5px 0 var(--color-dark-line);
+
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+
   transition: all 0.25s ease;
 }
 
@@ -268,34 +483,55 @@ a {
   transform: translateY(-5px);
 }
 
-.species-icon {
-  font-size: 4rem;
-  margin-bottom: 18px;
+.species-image {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+
+  display: block;
+  margin-bottom: 16px;
+
+  border: 3px solid var(--color-dark-line);
+  border-radius: 16px;
+}
+
+.species-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  text-align: center;
 }
 
 .species-card strong {
-  font-size: 1.25rem;
+  display: block;
+  min-height: 52px;
+  margin-bottom: 10px;
+
   color: var(--color-dark-line);
-  margin-bottom: 12px;
+  font-size: 1.2rem;
+  line-height: 1.25;
 }
 
 .species-card p {
-  font-size: 0.95rem;
+  min-height: 52px;
+  margin: 0;
+
   color: var(--color-dark-line);
-  line-height: 1.5;
-  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .species-card-action {
-  margin-top: auto;
+  margin-top: 16px;
+
+  color: var(--color-dark-line);
   font-size: 0.8rem;
   font-weight: 900;
   text-transform: uppercase;
-  color: var(--color-dark-line);
-}
-
-.species-card-more {
-  color: var(--color-dark-line);
+  text-align: center;
 }
 
 .gallery-arrow {
@@ -303,12 +539,15 @@ a {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
+
   width: 48px;
   height: 48px;
-  border: 3px solid var(--color-dark-line);
-  border-radius: 50%;
+
   background-color: white;
   color: var(--color-dark-line);
+  border: 3px solid var(--color-dark-line);
+  border-radius: 50%;
+
   font-size: 1.5rem;
   font-weight: 900;
   cursor: pointer;
@@ -323,494 +562,232 @@ a {
   right: -18px;
 }
 
-/* Mobile */
-@media (max-width: 1100px) {
-  .gallery-card-shell {
-    min-width: 33.3333%;
-  }
-}
-
-@media (max-width: 700px) {
-  .biodiversity-section {
-    padding: 2.5rem 1rem;
-  }
-
-  .gallery-showcase-frame {
-    padding: 20px;
-    border-radius: 28px;
-    box-shadow: 5px 5px 0 var(--color-dark-line);
-  }
-
-  .gallery-showcase-header {
-    padding: 22px;
-  }
-
-  .gallery-showcase-header h2 {
-    font-size: 1.7rem;
-  }
-
-  .gallery-showcase-header p {
-    font-size: 1rem;
-  }
-
-  .gallery-card-shell {
-    min-width: 80%;
-  }
-
-  .species-card {
-    height: 320px;
-  }
-
-  .gallery-arrow-left {
-    left: -10px;
-  }
-
-  .gallery-arrow-right {
-    right: -10px;
-  }
-}
-
 /* ==========================================================
-   5. 概念铺垫区 (Concept Section - Trade-offs)
+   7. Interactive Eco Map
+   Leaflet map section with markers and discovery panel.
    ========================================================== */
-.concept-section {
-    background-color: var(--color-neutral);
-    padding: 4rem 2rem;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+
+.eco-map-helper {
+  margin-bottom: 18px;
+  line-height: 1.6;
 }
 
-.concept-section h2 {
-    font-size: 2rem;
+.eco-area-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.concept-section p {
-    font-size: 1.2rem;
-}
-
-/* ==========================================================
-   6. 互动地图区 (Interactive Map Section)
-   ========================================================== */
-.eco-map-section {
-  padding: 4rem 2rem;
-  background-color: var(--color-bg-main);
-}
-
-.eco-map-frame {
-  max-width: 1250px;
-  margin: 0 auto;
-  background-color: var(--color-neutral);
-  border: 5px solid var(--color-dark-line);
-  border-radius: 38px;
-  padding: 34px;
-  box-shadow: 10px 10px 0 var(--color-dark-line);
-}
-
-.eco-map-header {
-  background-color: var(--color-bg-secondary);
-  border: 3px solid var(--color-dark-line);
-  border-radius: 28px;
-  padding: 28px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.eco-map-badge {
-  display: inline-block;
-  background-color: var(--color-accent-2);
-  color: var(--color-dark-line);
-  font-weight: 900;
-  padding: 8px 18px;
-  border-radius: 999px;
+.eco-area-card {
   border: 2px solid var(--color-dark-line);
-  margin-bottom: 16px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--color-neutral);
 }
 
-.eco-map-header h2 {
-  font-size: 2.3rem;
-  margin: 0 0 12px;
+.eco-area-toggle {
+  width: 100%;
+  padding: 14px 16px;
+
+  background-color: var(--color-bg-secondary);
+  color: var(--color-dark-line);
+
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 900;
+  font-size: 0.95rem;
+  text-align: left;
 }
 
-.eco-map-header p {
-  max-width: 780px;
-  margin: 0 auto;
-  line-height: 1.7;
+.eco-area-toggle.active {
+  background-color: var(--color-accent-2);
+}
+
+.eco-area-dropdown {
+  padding: 14px 16px;
+  background-color: white;
+  border-top: 2px solid var(--color-dark-line);
+}
+
+.eco-area-dropdown small {
+  display: inline-block;
+  margin-bottom: 8px;
+
+  color: var(--color-accent-1);
+  font-weight: 900;
+}
+
+.eco-area-dropdown p {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.species-checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.species-checkbox-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  background-color: var(--color-neutral);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 14px;
+
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.species-checkbox-item input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
 }
 
 .eco-map-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 26px;
+
+  grid-template-columns: 340px 1fr;
+
+  gap: 24px;
+
+  align-items: start;
 }
 
 .eco-map-info-panel {
   background-color: white;
-  border: 3px solid var(--color-dark-line);
-  border-radius: 26px;
-  padding: 24px;
+
+  border: 4px solid var(--color-dark-line);
+
+  border-radius: 28px;
+
+  padding: 22px;
+
   box-shadow: 5px 5px 0 var(--color-dark-line);
-}
 
-.discovered-animal-card {
-  background-color: var(--color-bg-secondary);
-  border: 3px dashed var(--color-dark-line);
-  border-radius: 20px;
-  padding: 18px;
-  margin: 18px 0;
-}
+  max-height: 700px;
 
-.discovered-animal-card span {
-  font-size: 0.8rem;
-  font-weight: 900;
-  color: var(--color-accent-1);
-}
-
-.discovered-animal-card h4 {
-  margin: 6px 0;
-  font-size: 1.3rem;
-}
-
-.eco-map-legend {
-  margin-top: 24px;
-  background-color: var(--color-neutral);
-  border: 2px solid var(--color-dark-line);
-  border-radius: 18px;
-  padding: 16px;
-}
-
-.eco-map-legend p {
-  margin: 8px 0;
-  font-weight: 700;
+  overflow-y: auto;
 }
 
 .eco-map-container {
   border: 4px solid var(--color-dark-line);
-  border-radius: 26px;
+
+  border-radius: 28px;
+
   overflow: hidden;
-  box-shadow: 5px 5px 0 var(--color-dark-line);
+
+  box-shadow: 6px 6px 0 var(--color-dark-line);
+
+  min-height: 700px;
 }
 
 .leaflet-eco-map {
-  height: 560px;
   width: 100%;
+  height: 700px;
 }
 
-.eco-map-marker {
-  width: 42px;
-  height: 42px;
-  background: white;
-  border: 3px solid #1C4D4F;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  box-shadow: 3px 3px 0 #1C4D4F;
+/* ==========================================================
+   Eco Map Intro Card
+   ========================================================== */
+
+.eco-map-intro-card {
+  max-width: 1200px;
+
+  margin: 30px auto 24px;
+
+  background-color: var(--color-neutral);
+
+  border: 4px solid var(--color-dark-line);
+
+  border-radius: 30px;
+
+  padding: 28px 32px;
+
+  box-shadow: 8px 8px 0 var(--color-dark-line);
 }
 
-.eco-popup h3 {
-  margin: 0 0 6px;
-}
-
-.eco-popup p {
-  margin: 8px 0;
-}
-
-.popup-animal-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.eco-map-intro-card h1 {
   margin-top: 10px;
+
+  margin-bottom: 14px;
+
+  font-size: 2.5rem;
+
+  color: var(--color-dark-line);
 }
 
-.popup-animal-buttons button {
-  background-color: #F7C243;
-  border: 2px solid #1C4D4F;
-  border-radius: 999px;
-  padding: 8px 10px;
-  font-weight: 900;
-  cursor: pointer;
+.eco-map-intro-card p {
+  font-size: 1.1rem;
+
+  line-height: 1.7;
+
+  max-width: 850px;
+
+  color: var(--color-dark-line);
 }
 
-@media (max-width: 900px) {
-  .eco-map-layout {
-    grid-template-columns: 1fr;
-  }
+.eco-map-badge {
+  display: inline-block;
 
-  .leaflet-eco-map {
-    height: 420px;
-  }
-}
+  background-color: var(--color-accent-2);
 
-@media (max-width: 600px) {
-  .eco-map-section {
-    padding: 2.5rem 1rem;
-  }
+  color: var(--color-dark-line);
 
-  .eco-map-frame {
-    padding: 20px;
-    border-radius: 28px;
-  }
-
-  .eco-map-header h2 {
-    font-size: 1.7rem;
-  }
-}
-
-.reset-map-btn {
-  position: absolute;
-
-  left: 18px;
-  bottom: 18px;
-
-  z-index: 1000;
-
-  background-color: #F7C243;
-
-  border: 3px solid #1C4D4F;
+  border: 2px solid var(--color-dark-line);
 
   border-radius: 999px;
 
-  padding: 12px 18px;
+  padding: 8px 18px;
 
   font-weight: 900;
 
-  cursor: pointer;
+  font-size: 0.9rem;
 
-  box-shadow: 4px 4px 0 #1C4D4F;
-
-  transition: all 0.2s ease;
+  letter-spacing: 0.04em;
 }
 
-.reset-map-btn:hover {
-  transform: translateY(-2px);
+.eco-map-header {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 28px 32px;
+
+  background-color: var(--color-bg-secondary);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 30px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+
+  text-align: center;
 }
 
-/* ==========================================================
-   7. 页脚 (Footer)
-   ========================================================== */
-footer {
-    background-color: var(--color-dark-line);
-    color: var(--color-neutral);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
+.eco-map-header h2 {
+  margin: 10px 0 14px;
+  font-size: 2.4rem;
+  color: var(--color-dark-line);
 }
 
-footer p {
-    margin: 0;
-}
-
-/* ==========================================================
-   8. 移动端适配 Mobile Responsive
-   ========================================================== */
-
-/* 平板和小屏电脑 */
-@media (max-width: 900px) {
-  .navbar-pill {
-    width: 92%;
-    padding: 12px;
-    border-radius: 28px;
-    top: 10px;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    gap: 14px;
-    padding: 0;
-    width: 100%;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .nav-links a {
-    font-size: 0.95rem;
-    padding: 6px 10px;
-  }
-
-  .nav-register {
-    font-size: 0.95rem;
-    padding: 8px 18px;
-  }
-
-  .hero-section {
-    padding: 4rem 1.2rem;
-  }
-
-  .hero-section h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-section p {
-    font-size: 1.15rem;
-  }
-
-  .map-container,
-  .map-layout {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .sidebar,
-  .map-sidebar {
-    width: auto;
-  }
-
-  .map-area,
-  .map-canvas {
-    min-height: 420px;
-  }
-}
-
-/* 手机端 */
-@media (max-width: 600px) {
-  body {
-    overflow-x: hidden;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.6rem !important;
-  }
-
-  h3 {
-    font-size: 1.2rem !important;
-  }
-
-  .navbar-pill {
-    margin: 10px auto;
-    width: calc(100% - 24px);
-    border-radius: 24px;
-    box-shadow: 3px 3px 0 var(--color-dark-line);
-  }
-
-  .nav-logo {
-    font-size: 1.1rem;
-  }
-
-  .nav-links {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .nav-links li,
-  .nav-links a {
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  .nav-register {
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  .hero-section {
-    padding: 3rem 1rem;
-  }
-
-  .hero-section h1 {
-    font-size: 1.9rem;
-  }
-
-  .hero-section p {
-    font-size: 1rem;
-  }
-
-  .education-section,
-  .concept-section,
-  .interactive-map-section {
-    padding: 2.5rem 1rem;
-  }
-
-  .animal-card {
-    min-width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    padding: 1.5rem;
-  }
-
-  .map-layout,
-  .map-container {
-    gap: 16px;
-  }
-
-  .map-sidebar,
-  .sidebar {
-    padding: 16px;
-    box-sizing: border-box;
-  }
-
-  .map-canvas,
-  .map-area {
-    width: 100%;
-    min-height: 360px;
-    border-width: 3px;
-  }
-
-  .map-region {
-    font-size: 0.8rem;
-    padding: 6px 8px;
-    max-width: 130px;
-  }
-
-  .animal-marker,
-  .marker {
-    font-size: 1.8rem;
-  }
-
-  .card-style {
-    padding: 22px !important;
-    margin: 28px 0 !important;
-    border-radius: 22px !important;
-  }
-
-  .btn-kid,
-  .btn-primary {
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 1rem;
-    padding: 12px 16px;
-  }
-
-  .input-style {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  footer {
-    padding: 2rem 1rem !important;
-  }
-}
-
-/* 超小屏手机 */
-@media (max-width: 390px) {
-  .nav-links {
-    grid-template-columns: 1fr;
-  }
-
-  .map-canvas,
-  .map-area {
-    min-height: 300px;
-  }
-
-  .hero-section h1 {
-    font-size: 1.65rem;
-  }
+.eco-map-header p {
+  margin: 0 auto;
+  max-width: 850px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-dark-line);
 }
 
 /* ==========================================================
-   Budget Game - Eco City Dashboard
+   8. Budget Game Dashboard
+   City simulation system with KPI bars and policy cards.
    ========================================================== */
 
 .budget-game-section {
@@ -821,19 +798,21 @@ footer p {
 .budget-game-card {
   max-width: 1150px;
   margin: 0 auto;
+  padding: 34px;
+
   background-color: var(--color-neutral);
   border: 4px solid var(--color-dark-line);
   border-radius: 34px;
-  padding: 34px;
   box-shadow: 8px 8px 0 var(--color-dark-line);
 }
 
 .budget-game-header {
+  margin-bottom: 30px;
+  padding: 28px;
+
   background-color: var(--color-bg-secondary);
   border: 3px solid var(--color-dark-line);
   border-radius: 26px;
-  padding: 28px;
-  margin-bottom: 30px;
 }
 
 .budget-game-badge {
@@ -848,13 +827,13 @@ footer p {
 }
 
 .budget-game-header h2 {
-  font-size: 2.2rem;
   margin: 0 0 10px;
+  font-size: 2.2rem;
 }
 
 .budget-game-header p {
-  font-size: 1.1rem;
   margin: 0;
+  font-size: 1.1rem;
 }
 
 .budget-game-layout {
@@ -919,14 +898,12 @@ footer p {
 .budget-system-brief {
   margin-top: 30px;
   padding: 18px;
+
   background-color: var(--color-bg-secondary);
   border: 3px dashed var(--color-dark-line);
   border-radius: 18px;
-  font-weight: 700;
-}
 
-.budget-policy-panel p {
-  margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .budget-policy-list {
@@ -937,16 +914,20 @@ footer p {
 
 .budget-policy-card {
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  text-align: left;
+  padding: 18px;
+
   background-color: var(--color-bg-main);
   border: 3px solid var(--color-dark-line);
   border-radius: 22px;
-  padding: 18px;
-  cursor: pointer;
   box-shadow: 4px 4px 0 var(--color-dark-line);
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  text-align: left;
   transition: all 0.2s ease;
 }
 
@@ -959,12 +940,15 @@ footer p {
   width: 58px;
   height: 58px;
   flex-shrink: 0;
+
   background-color: var(--color-neutral);
   border: 2px solid var(--color-dark-line);
   border-radius: 18px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 2rem;
 }
 
@@ -974,8 +958,8 @@ footer p {
 
 .budget-policy-content strong {
   display: block;
-  font-size: 1rem;
   color: var(--color-dark-line);
+  font-size: 1rem;
 }
 
 .budget-policy-content small {
@@ -1001,15 +985,17 @@ footer p {
 .budget-refresh-button {
   width: 100%;
   margin-top: 20px;
+  padding: 14px 20px;
+
   background-color: var(--color-accent-2);
   color: var(--color-dark-line);
-  font-size: 1rem;
-  font-weight: 900;
-  padding: 14px 20px;
   border: 3px solid var(--color-dark-line);
   border-radius: 999px;
-  cursor: pointer;
   box-shadow: 4px 4px 0 var(--color-dark-line);
+
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
 }
 
 .budget-refresh-button:hover {
@@ -1017,222 +1003,9 @@ footer p {
   color: white;
 }
 
-/* Mobile */
-@media (max-width: 900px) {
-  .budget-game-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .budget-game-section {
-    padding: 2.5rem 1rem;
-  }
-
-  .budget-game-card {
-    padding: 20px;
-    border-radius: 26px;
-  }
-
-  .budget-game-header {
-    padding: 22px;
-  }
-
-  .budget-game-header h2 {
-    font-size: 1.6rem;
-  }
-
-  .budget-kpi-panel,
-  .budget-policy-panel {
-    padding: 20px;
-  }
-
-  .budget-policy-card {
-    padding: 14px;
-    gap: 12px;
-  }
-
-  .budget-policy-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 1.6rem;
-  }
-}
-
 /* ==========================================================
-   Home Carousel
-   ========================================================== */
-
-.home-carousel {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.home-carousel-slide {
-  position: relative;
-  max-width: 1200px;
-  height: 520px;
-  margin: 0 auto;
-  border: 4px solid var(--color-dark-line);
-  border-radius: 36px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 8px 8px 0 var(--color-dark-line);
-}
-
-.home-carousel-overlay {
-  width: 100%;
-  height: 100%;
-  padding: 70px;
-  box-sizing: border-box;
-  background: linear-gradient(
-    90deg,
-    rgba(28, 77, 79, 0.9),
-    rgba(28, 77, 79, 0.55),
-    rgba(28, 77, 79, 0.1)
-  );
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.home-carousel-tag {
-  background: var(--color-accent-2);
-  color: var(--color-dark-line);
-  font-weight: 900;
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: 2px solid var(--color-dark-line);
-  margin-bottom: 18px;
-}
-
-.home-carousel h1 {
-  color: white;
-  font-size: clamp(2rem, 5vw, 4rem);
-  max-width: 720px;
-  line-height: 1.05;
-  margin-bottom: 20px;
-  text-shadow: 3px 3px 0 var(--color-dark-line);
-}
-
-.home-carousel p {
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  max-width: 560px;
-  margin-bottom: 30px;
-}
-
-.home-carousel-button {
-  background: var(--color-accent-1);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 900;
-  padding: 14px 28px;
-  border: 3px solid var(--color-dark-line);
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 var(--color-dark-line);
-}
-
-.home-carousel-button:hover {
-  background: var(--color-accent-2);
-  color: var(--color-dark-line);
-}
-
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 3px solid var(--color-dark-line);
-  background: var(--color-neutral);
-  color: var(--color-dark-line);
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 3px 3px 0 var(--color-dark-line);
-}
-
-.carousel-arrow-left {
-  left: 18px;
-}
-
-.carousel-arrow-right {
-  right: 18px;
-}
-
-.carousel-dots {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-}
-
-.carousel-dot {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  border: 2px solid var(--color-dark-line);
-  background: var(--color-neutral);
-  cursor: pointer;
-}
-
-.carousel-dot.active {
-  background: var(--color-accent-2);
-  transform: scale(1.25);
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-  .home-carousel {
-    padding: 12px;
-  }
-
-  .home-carousel-slide {
-    height: 420px;
-    border-radius: 26px;
-    box-shadow: 4px 4px 0 var(--color-dark-line);
-  }
-
-  .home-carousel-overlay {
-    padding: 36px 24px;
-    background: linear-gradient(
-      180deg,
-      rgba(28, 77, 79, 0.85),
-      rgba(28, 77, 79, 0.65)
-    );
-    align-items: center;
-    text-align: center;
-  }
-
-  .home-carousel h1 {
-    text-shadow: 2px 2px 0 var(--color-dark-line);
-  }
-
-  .carousel-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 1.6rem;
-  }
-
-  .carousel-arrow-left {
-    left: 10px;
-  }
-
-  .carousel-arrow-right {
-    right: 10px;
-  }
-}
-
-/* ==========================================================
-   Quiz Showcase Section
+   9. Quiz Section
+   Interactive quiz section with feedback and explanation.
    ========================================================== */
 
 .quiz-section {
@@ -1243,20 +1016,23 @@ footer p {
 .quiz-showcase-frame {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 36px;
+
   background-color: var(--color-neutral);
   border: 5px solid var(--color-dark-line);
   border-radius: 38px;
-  padding: 36px;
   box-shadow: 10px 10px 0 var(--color-dark-line);
 }
 
 .quiz-header {
+  margin-bottom: 34px;
+  padding: 28px;
+
   background-color: var(--color-bg-secondary);
   border: 3px solid var(--color-dark-line);
   border-radius: 28px;
-  padding: 28px;
+
   text-align: center;
-  margin-bottom: 34px;
 }
 
 .quiz-badge {
@@ -1265,8 +1041,8 @@ footer p {
   color: var(--color-dark-line);
   font-weight: 900;
   padding: 8px 18px;
-  border-radius: 999px;
   border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
   margin-bottom: 16px;
 }
 
@@ -1292,16 +1068,18 @@ footer p {
 .quiz-question-count {
   display: inline-block;
   margin-bottom: 18px;
+
   background-color: var(--color-accent-2);
   border: 2px solid var(--color-dark-line);
   border-radius: 999px;
   padding: 6px 14px;
+
   font-weight: 900;
 }
 
 .quiz-question-card h3 {
-  font-size: 2rem;
   margin-bottom: 32px;
+  font-size: 2rem;
   line-height: 1.4;
 }
 
@@ -1345,70 +1123,49 @@ footer p {
   color: #dc2626;
 }
 
-/* Mobile */
-@media (max-width: 700px) {
-  .quiz-section {
-    padding: 2.5rem 1rem;
-  }
-
-  .quiz-showcase-frame {
-    padding: 20px;
-    border-radius: 28px;
-    box-shadow: 5px 5px 0 var(--color-dark-line);
-  }
-
-  .quiz-header {
-    padding: 22px;
-  }
-
-  .quiz-header h2 {
-    font-size: 1.7rem;
-  }
-
-  .quiz-question-card {
-    padding: 24px;
-  }
-
-  .quiz-question-card h3 {
-    font-size: 1.4rem;
-  }
-
-  .quiz-options {
-    flex-direction: column;
-  }
-
-  .quiz-option-btn {
-    width: 100%;
-  }
+.quiz-explanation {
+  margin: 20px auto 0;
+  max-width: 720px;
+  background-color: var(--color-bg-secondary);
+  border: 3px dashed var(--color-dark-line);
+  border-radius: 20px;
+  padding: 18px 22px;
+  text-align: left;
 }
 
 /* ==========================================================
-   Floating Eco Task Panel
+   10. Floating Eco Task Panel
+   Fixed daily task progress panel.
    ========================================================== */
 
 .eco-task-panel {
   position: fixed;
   right: 24px;
   top: 140px;
+  z-index: 999;
+
   width: 270px;
+  padding: 18px;
+
   background-color: var(--color-neutral);
   border: 4px solid var(--color-dark-line);
   border-radius: 26px;
-  padding: 18px;
   box-shadow: 6px 6px 0 var(--color-dark-line);
-  z-index: 999;
 }
 
 .eco-task-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 14px;
+  padding: 12px;
+
   background-color: var(--color-bg-secondary);
   border: 2px solid var(--color-dark-line);
   border-radius: 18px;
-  padding: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   font-weight: 900;
-  margin-bottom: 14px;
 }
 
 .eco-task-header strong {
@@ -1426,6 +1183,7 @@ footer p {
   grid-template-columns: 36px 1fr 32px;
   align-items: center;
   gap: 10px;
+
   background-color: white;
   border: 2px solid var(--color-dark-line);
   border-radius: 18px;
@@ -1448,8 +1206,8 @@ footer p {
 }
 
 .eco-task-item small {
-  font-weight: 900;
   color: var(--color-accent-1);
+  font-weight: 900;
 }
 
 .eco-task-check {
@@ -1459,25 +1217,231 @@ footer p {
 
 .eco-task-reward {
   margin-top: 14px;
+  padding: 12px;
+
   background-color: var(--color-accent-2);
   border: 2px solid var(--color-dark-line);
   border-radius: 18px;
-  padding: 12px;
+
   font-weight: 900;
   text-align: center;
 }
 
-/* Mobile */
-@media (max-width: 900px) {
-  .eco-task-panel {
-    position: static;
-    width: auto;
-    margin: 20px 16px;
-  }
+/* ==========================================================
+   11. Message Board and Auth
+   Community message board and fake login/register panel.
+   ========================================================== */
+
+.message-section,
+.message-board-section,
+.message-login-card,
+.auth-card {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 40px;
+
+  background-color: var(--color-neutral);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 30px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+}
+
+.message-section {
+  text-align: center;
+}
+
+.message-login-card,
+.auth-card {
+  max-width: 520px;
+}
+
+.message-section h2,
+.message-board-section h3,
+.message-login-card h3,
+.auth-card h3 {
+  color: var(--color-dark-line);
+  margin-bottom: 20px;
+}
+
+.message-section p {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  font-size: 1.2rem;
+}
+
+.message-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.message-actions .secondary {
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+}
+
+.message-login-form,
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.message-back-btn,
+.auth-switch-btn {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  color: var(--color-dark-line);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.message-warning {
+  background-color: var(--color-bg-secondary);
+  border: 2px dashed var(--color-dark-line);
+  border-radius: 16px;
+  padding: 12px;
+  font-weight: 900;
+}
+
+.message-list {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: 26px;
+  padding: 20px;
+
+  background-color: white;
+  border: 3px solid var(--color-dark-line);
+  border-radius: 20px;
+}
+
+.message-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.message-item small {
+  opacity: 0.65;
+  font-size: 0.8rem;
+}
+
+.message-post-form {
+  display: flex;
+  gap: 12px;
+}
+
+.message-post-form input {
+  flex: 1;
+}
+
+.auth-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.auth-card {
+  text-align: center;
+}
+
+.auth-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
 }
 
 /* ==========================================================
-   Site Footer
+   12. Cookie Consent Banner
+   GDPR-style cookie notice.
+   ========================================================== */
+
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  width: min(700px, calc(100% - 40px));
+  padding: 18px;
+
+  background-color: var(--color-neutral);
+  border: 4px solid var(--color-dark-line);
+  border-radius: 22px;
+  box-shadow: 8px 8px 0 var(--color-dark-line);
+}
+
+.cookie-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  text-align: center;
+}
+
+.cookie-badge {
+  display: inline-block;
+  background-color: var(--color-accent-2);
+  color: var(--color-dark-line);
+  border: 2px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.cookie-banner h3 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.cookie-banner p {
+  max-width: 520px;
+  margin: 0;
+}
+
+.cookie-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.cookie-btn {
+  border: 3px solid var(--color-dark-line);
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--color-dark-line);
+}
+
+.cookie-btn.primary {
+  background-color: var(--color-accent-2);
+}
+
+.cookie-btn.secondary {
+  background-color: white;
+}
+
+/* ==========================================================
+   13. Footer
+   Large multi-column footer inspired by zoo/education websites.
    ========================================================== */
 
 .site-footer {
@@ -1489,10 +1453,12 @@ footer p {
 .footer-card {
   max-width: 1230px;
   margin: 0 auto;
+  padding: 56px 60px 28px;
+
   background-color: #c8cca0;
   color: #002f31;
   border-radius: 22px;
-  padding: 56px 60px 28px;
+
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
   gap: 54px;
@@ -1510,17 +1476,19 @@ footer p {
   background-color: #002f31;
   color: #c8cca0;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 2rem;
 }
 
 .footer-logo h2 {
   margin: 0;
+  color: #002f31;
   font-size: 2rem;
   line-height: 0.95;
-  color: #002f31;
 }
 
 .footer-socials {
@@ -1534,9 +1502,11 @@ footer p {
   height: 38px;
   border: 1.8px solid #002f31;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-weight: 900;
 }
 
@@ -1550,10 +1520,10 @@ footer p {
 .footer-column h4,
 .footer-awards h4 {
   margin: 0 0 24px;
+  color: #002f31;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #002f31;
 }
 
 .footer-column {
@@ -1582,12 +1552,19 @@ footer p {
 .footer-award-card {
   width: 72px;
   min-height: 86px;
+  padding: 10px 6px;
+
   background-color: #f1f1e8;
   border-radius: 4px;
-  padding: 10px 6px;
+
   text-align: center;
   font-size: 0.75rem;
   box-sizing: border-box;
+}
+
+.footer-award-card.gold {
+  min-height: 112px;
+  background-color: var(--color-accent-2);
 }
 
 .footer-award-card span {
@@ -1599,11 +1576,6 @@ footer p {
 .footer-award-card strong,
 .footer-award-card small {
   display: block;
-}
-
-.footer-award-card.gold {
-  background-color: #f7c243;
-  min-height: 112px;
 }
 
 .footer-bottom {
@@ -1621,8 +1593,61 @@ footer p {
   text-decoration: none;
 }
 
-/* Mobile */
+/* ==========================================================
+   14. Responsive Design
+   Tablet and mobile layout adjustments.
+   ========================================================== */
+
+@media (max-width: 1100px) {
+  .gallery-card-shell {
+    min-width: 33.3333%;
+  }
+}
+
 @media (max-width: 900px) {
+  .navbar-pill {
+    width: 92%;
+    padding: 12px;
+    border-radius: 28px;
+    top: 10px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .home-carousel-slide {
+    height: 440px;
+  }
+
+  .budget-game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .leaflet-eco-map {
+    height: 420px;
+  }
+
+  .eco-task-panel {
+    position: static;
+    width: auto;
+    margin: 20px 16px;
+  }
+
   .footer-card {
     grid-template-columns: 1fr;
     padding: 34px 26px;
@@ -1645,114 +1670,180 @@ footer p {
   }
 }
 
+@media (max-width: 700px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem !important;
+  }
+
+  h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .navbar-pill {
+    margin: 10px auto;
+    width: calc(100% - 24px);
+    border-radius: 24px;
+    box-shadow: 3px 3px 0 var(--color-dark-line);
+  }
+
+  .nav-links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-links li,
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .home-carousel {
+    padding: 12px;
+  }
+
+  .home-carousel-slide {
+    height: 420px;
+    border-radius: 26px;
+    box-shadow: 4px 4px 0 var(--color-dark-line);
+  }
+
+  .home-carousel-overlay {
+    padding: 36px 24px;
+    background: linear-gradient(
+      180deg,
+      rgba(28, 77, 79, 0.85),
+      rgba(28, 77, 79, 0.65)
+    );
+    align-items: center;
+    text-align: center;
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.6rem;
+  }
+
+  .carousel-arrow-left {
+    left: 10px;
+  }
+
+  .carousel-arrow-right {
+    right: 10px;
+  }
+
+  .biodiversity-section,
+  .eco-map-section,
+  .budget-game-section,
+  .quiz-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .gallery-showcase-frame,
+  .eco-map-frame,
+  .budget-game-card,
+  .quiz-showcase-frame {
+    padding: 20px;
+    border-radius: 28px;
+    box-shadow: 5px 5px 0 var(--color-dark-line);
+  }
+
+  .gallery-card-shell {
+    min-width: 80%;
+  }
+
+  .species-card {
+    min-height: 400px;
+  }
+
+  .species-image {
+    height: 160px;
+  }
+
+  .gallery-arrow-left {
+    left: -10px;
+  }
+
+  .gallery-arrow-right {
+    right: -10px;
+  }
+
+  .quiz-question-card {
+    padding: 24px;
+  }
+
+  .quiz-options,
+  .message-actions,
+  .message-post-form {
+    flex-direction: column;
+  }
+
+  .quiz-option-btn,
+  .btn-kid,
+  .btn-primary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .input-style {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .cookie-banner {
+    bottom: 12px;
+    width: calc(100% - 24px);
+  }
+
+  .site-footer {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .nav-links {
+    grid-template-columns: 1fr;
+  }
+
+  .home-carousel h1 {
+    font-size: 1.65rem;
+  }
+
+  .leaflet-eco-map {
+    height: 300px;
+  }
+}
+
 /* ==========================================================
-   Cookie Consent Banner
+   Daily Eco Tips Card
    ========================================================== */
-.cookie-banner {
-  position: fixed;
-
-  left: 50%;
-  bottom: 24px;
-
-  transform: translateX(-50%);
-
-  width: min(700px, calc(100% - 40px));
-
-  background-color: var(--color-neutral);
-
+.daily-eco-card {
+  background-color: #B2D1D6;
   border: 4px solid var(--color-dark-line);
-
-  border-radius: 22px;
-
-  padding: 18px;
-
-  box-shadow: 8px 8px 0 var(--color-dark-line);
-
-  z-index: 9999;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 var(--color-dark-line);
 }
 
-.cookie-banner-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-}
-
-.cookie-badge {
-  display: inline-block;
-  background-color: var(--color-accent-2);
-  color: var(--color-dark-line);
-  border: 2px solid var(--color-dark-line);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 1.8rem;
-  font-weight: 900;
-  margin-bottom: 10px;
-}
-
-.cookie-banner h3 {
-  margin: 0 0 8px;
-  font-size: 2rem;
-}
-
-.cookie-banner p {
-  max-width: 520px;
-}
-
-.cookie-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+.daily-eco-image-box {
   width: 100%;
+  height: 260px;
+  background-color: var(--color-neutral);
+  border-bottom: 4px solid var(--color-dark-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cookie-btn {
-  border: 3px solid var(--color-dark-line);
-  border-radius: 999px;
-  padding: 12px 20px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 var(--color-dark-line);
-}
-
-.cookie-btn.primary {
-  background-color: var(--color-accent-2);
-}
-
-.cookie-btn.secondary {
-  background-color: white;
-}
-
-/* 生物图鉴副页 */
-.page-hero {
-  max-width: 1100px;
-  margin: 4rem auto 2rem;
-  padding: 3rem 2rem;
-  background-color: var(--color-bg-secondary);
-  border: 4px solid var(--color-dark-line);
-  border-radius: 34px;
-  box-shadow: 8px 8px 0 var(--color-dark-line);
-  text-align: center;
-}
-
-.page-badge {
-  display: inline-block;
-  background-color: var(--color-accent-2);
-  border: 2px solid var(--color-dark-line);
-  border-radius: 999px;
-  padding: 8px 18px;
-  font-weight: 900;
-  margin-bottom: 16px;
-}
-
-.page-hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 12px;
-}
-
-.page-hero p {
-  font-size: 1.15rem;
+.daily-eco-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }

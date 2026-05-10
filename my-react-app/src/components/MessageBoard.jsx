@@ -1,115 +1,179 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import AuthPanel from './AuthPanel';
+
+const API_BASE = 'http://dv0881.sci-project.lboro.ac.uk/eco-city/api';
 
 const MessageBoard = () => {
-  // ---------------------------------------------------------
-  // 1. 状态管理
-  // ---------------------------------------------------------
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 模拟登录状态
-  const [view, setView] = useState('PROMPT'); // 'PROMPT' | 'LOGIN' | 'BOARD'
-  
-  const [messages, setMessages] = useState([
-    { user: "小绿", text: "今天在索尔河边捡了3个瓶子！🌳" },
-    { user: "拉夫堡学长", text: "大家记得支持校园里的蜜蜂项目哦。🐝" }
-  ]);
-  
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [view, setView] = useState('PROMPT');
 
-  // ---------------------------------------------------------
-  // 2. 交互函数
-  // ---------------------------------------------------------
+  const [messages, setMessages] = useState([]);
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [postText, setPostText] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem('eco-current-user')) || null
+  );
+
+  const fetchMessages = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/get-messages.php`);
+      const data = await response.json();
+
+      if (data.success) {
+        setMessages(data.messages);
+      }
+    } catch (error) {
+      console.error('Failed to load messages:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
+
   const handleLogin = (e) => {
     e.preventDefault();
-    // 这里模拟登录逻辑：只要填了字就让进
-    if(formData.email && formData.password) {
+
+    if (formData.email && formData.password) {
       setIsLoggedIn(true);
       setView('BOARD');
-      alert("登录成功！欢迎回来，生态守护者。");
+      alert('Login successful! Welcome back, Eco Guardian.');
     }
   };
 
-  const handlePost = (e) => {
+  const handlePost = async (e) => {
     e.preventDefault();
-    const text = e.target.msg.value;
-    if(text) {
-      setMessages([...messages, { user: "我", text }]);
-      e.target.reset();
+
+    if (!postText.trim()) return;
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${API_BASE}/add-message.php`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: currentUser?.name || 'Anonymous',
+          message: postText
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setPostText('');
+        await fetchMessages();
+      } else {
+        alert(data.error || 'Failed to post message');
+      }
+    } catch (error) {
+      console.error('Failed to post message:', error);
+      alert('Unable to connect to the server. Please check if the PHP API is available.');
+    } finally {
+      setLoading(false);
     }
   };
 
-  // ---------------------------------------------------------
-  // 3. 渲染视图切换
-  // ---------------------------------------------------------
-
-  // A. 注册诱导与提示视图
   if (view === 'PROMPT') {
     return (
-      <section className="card-style" style={{ textAlign: 'center', padding: '60px', backgroundColor: '#f0fdf4' }} id='message'>
-        <h2 style={{ color: '#0D4D4D', marginBottom: '20px' }}>💬 生态守护者社区</h2>
-        <p style={{ fontSize: '1.2rem', color: '#0D4D4D', maxWidth: '600px', margin: '0 auto 30px' }}>
-          注册成为会员，发表你的环保心得，并获取拉夫堡生态大冒险的最新资讯！
+      <section
+        className="message-section card-style"
+        id="message"
+      >
+        <p>
+          Join the community to share your eco ideas and receive the latest updates from the Loughborough Eco Adventure!
         </p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-          <button className="btn-kid" style={{ backgroundColor: '#0D4D4D', color: '#DEFF9A' }}>
-            立即注册
-          </button>
-          <button 
-            className="btn-kid" 
-            style={{ backgroundColor: '#DEFF9A', color: '#0D4D4D' }}
+
+        <div className="message-actions">
+          <button
+            className="btn-kid"
             onClick={() => setView('LOGIN')}
           >
-            已有账号登录
+            Register / Login
+          </button>
+
+          <button
+            className="btn-kid secondary"
+            onClick={() => setView('BOARD')}
+          >
+            View Messages First
           </button>
         </div>
       </section>
     );
   }
 
-  // B. 登录表单视图
   if (view === 'LOGIN') {
     return (
-      <section className="card-style" style={{ maxWidth: '500px', margin: '40px auto', padding: '40px' }}>
-        <h3 style={{ textAlign: 'center', color: '#0D4D4D', marginBottom: '30px' }}>守护者登录</h3>
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <input 
-            type="email" 
-            placeholder="邮箱地址" 
-            className="input-style"
-            required
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-          />
-          <input 
-            type="password" 
-            placeholder="密码" 
-            className="input-style"
-            required
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-          />
-          <button type="submit" className="btn-kid" style={{ width: '100%', backgroundColor: '#0D4D4D', color: '#DEFF9A' }}>
-            登录我的账户
-          </button>
-          <button type="button" style={{ background: 'none', border: 'none', color: '#666', cursor: 'pointer' }} onClick={() => setView('PROMPT')}>
-            返回
-          </button>
-        </form>
-      </section>
+      <AuthPanel
+        onLogin={(user) => {
+          setCurrentUser(user);
+          setIsLoggedIn(true);
+          setView('BOARD');
+        }}
+      />
     );
   }
 
-  // C. 正式留言板视图 (登录后可见)
   return (
-    <section className="card-style" style={{ padding: '40px' }}>
-      <h3 style={{ color: '#0D4D4D', marginBottom: '30px' }}>生态动态</h3>
-      <div style={{ maxHeight: '300px', overflowY: 'auto', marginBottom: '30px', background: 'white', padding: '20px', borderRadius: '15px' }}>
-        {messages.map((m, i) => (
-          <div key={i} style={{ marginBottom: '15px', paddingBottom: '10px', borderBottom: '1px solid #eee' }}>
-            <strong>{m.user}: </strong> {m.text}
-          </div>
-        ))}
+    <section className="message-board-section card-style" id="message">
+      <h3>🌱 Eco Community Board</h3>
+
+      {!isLoggedIn && (
+        <p className="message-warning">
+          You are currently in visitor mode. Log in to post messages.
+        </p>
+      )}
+
+      <div className="message-list">
+        {messages.length === 0 ? (
+          <p>No messages yet. Become the first Eco Guardian!</p>
+        ) : (
+          messages.map((m) => (
+            <div key={m.id} className="message-item">
+              <strong>{m.name || 'Anonymous'}:</strong>
+              <span>{m.message}</span>
+              <small>{m.created_at}</small>
+            </div>
+          ))
+        )}
       </div>
-      <form onSubmit={handlePost} style={{ display: 'flex', gap: '10px' }}>
-        <input name="msg" type="text" placeholder="分享你的绿色行动..." className="input-style" style={{ flexGrow: 1 }} />
-        <button type="submit" className="btn-kid" style={{ backgroundColor: '#0D4D4D', color: '#DEFF9A' }}>发送</button>
-      </form>
+
+      {isLoggedIn ? (
+        <form onSubmit={handlePost} className="message-post-form">
+          <input
+            type="text"
+            placeholder="Share your green actions..."
+            className="input-style"
+            value={postText}
+            onChange={(e) => setPostText(e.target.value)}
+          />
+
+          <button
+            type="submit"
+            className="btn-kid"
+            disabled={loading}
+          >
+            {loading ? 'Posting...' : 'Post'}
+          </button>
+        </form>
+      ) : (
+        <button
+          className="btn-kid"
+          onClick={() => setView('LOGIN')}
+        >
+          Log in to Post a Message
+        </button>
+      )}
     </section>
   );
 };

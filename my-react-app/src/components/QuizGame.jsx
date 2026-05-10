@@ -8,84 +8,100 @@ const QuizGame = ({ onCorrect }) => {
 
   const questions = [
     {
-      q: '拉夫堡哪种动物被称为“水质监测员”？',
-      options: ['红狐狸', '绿头鸭', '灰松鼠'],
-      correct: '绿头鸭',
+      q: 'Which animal in Loughborough is often seen as a “water quality indicator”?',
+      options: ['Red Fox', 'Mallard Duck', 'Grey Squirrel'],
+      correct: 'Mallard Duck',
       reward: 20,
       explanation:
-        '绿头鸭通常生活在河流、池塘等水域附近，它们的活动情况能帮助人们观察水环境是否健康。'
+        'Mallard ducks usually live near rivers and ponds, so their presence can help indicate whether local water environments are healthy.'
     },
     {
-      q: '大冠蝾螈最喜欢住在拉夫堡的哪里？',
-      options: ['图书馆', '火车站', '干净的池塘'],
-      correct: '干净的池塘',
+      q: 'Where do Great Crested Newts prefer to live?',
+      options: ['Libraries', 'Train stations', 'Clean ponds'],
+      correct: 'Clean ponds',
       reward: 20,
       explanation:
-        '大冠蝾螈依赖干净的池塘繁殖和生活，因此池塘生态环境非常重要。'
+        'Great Crested Newts rely on clean ponds for breeding and survival, making healthy wetland ecosystems very important.'
     },
     {
-      q: '为了保护生物多样性，我们应该怎么做？',
-      options: ['乱扔垃圾', '保护栖息地', '采摘野花'],
-      correct: '保护栖息地',
+      q: 'What should we do to protect biodiversity?',
+      options: ['Litter in public spaces', 'Protect habitats', 'Pick wildflowers'],
+      correct: 'Protect habitats',
       reward: 30,
       explanation:
-        '保护栖息地能为动物提供食物、水源和安全空间，是保护生态系统最重要的方法之一。'
+        'Protecting habitats gives animals food, water and safe living spaces, making it one of the most important ways to support ecosystems.'
     },
     {
-      q: '哪种动物擅长在树林中快速攀爬？',
-      options: ['灰松鼠', '河狸', '刺猬'],
-      correct: '灰松鼠',
+      q: 'Which animal is known for climbing quickly through trees?',
+      options: ['Grey Squirrel', 'Beaver', 'Hedgehog'],
+      correct: 'Grey Squirrel',
       reward: 20,
       explanation:
-        '灰松鼠拥有灵活的爪子和长尾巴，可以在树木之间迅速移动。'
+        'Grey squirrels use their sharp claws and long tails to move quickly between trees.'
     },
     {
-      q: '为什么不应该随意向河流丢弃垃圾？',
-      options: ['会影响动物生存', '会让天空变蓝', '会增加树木数量'],
-      correct: '会影响动物生存',
+      q: 'Why should people avoid throwing rubbish into rivers?',
+      options: [
+        'It harms wildlife',
+        'It makes the sky bluer',
+        'It increases tree growth'
+      ],
+      correct: 'It harms wildlife',
       reward: 30,
       explanation:
-        '垃圾会污染水源，影响鱼类、鸟类和其他依赖水环境生存的动物。'
+        'Rubbish pollutes water and can seriously affect fish, birds and other animals that depend on river ecosystems.'
     },
     {
-      q: '哪种动物通常在夜晚活动？',
-      options: ['红狐狸', '蝴蝶', '鸭子'],
-      correct: '红狐狸',
+      q: 'Which animal is usually active at night?',
+      options: ['Red Fox', 'Butterfly', 'Duck'],
+      correct: 'Red Fox',
       reward: 20,
       explanation:
-        '红狐狸通常在黄昏和夜晚寻找食物，因此被称为夜行性动物。'
+        'Red foxes often search for food during the evening and nighttime, making them nocturnal animals.'
     },
     {
-      q: '为什么城市需要更多绿色空间？',
-      options: ['帮助生态和居民健康', '让交通更拥堵', '减少动物数量'],
-      correct: '帮助生态和居民健康',
+      q: 'Why do cities need more green spaces?',
+      options: [
+        'To support ecosystems and public health',
+        'To create more traffic',
+        'To reduce wildlife populations'
+      ],
+      correct: 'To support ecosystems and public health',
       reward: 30,
       explanation:
-        '公园和绿色空间不仅能帮助动物生存，还能改善空气质量和居民心理健康。'
+        'Parks and green spaces help wildlife survive while also improving air quality and people’s wellbeing.'
     },
     {
-      q: '蝴蝶在生态系统中有什么作用？',
-      options: ['传播花粉', '污染空气', '破坏森林'],
-      correct: '传播花粉',
+      q: 'What role do butterflies play in ecosystems?',
+      options: ['Pollinating plants', 'Polluting the air', 'Destroying forests'],
+      correct: 'Pollinating plants',
       reward: 20,
       explanation:
-        '蝴蝶在采蜜时会帮助植物传播花粉，对植物繁殖非常重要。'
+        'Butterflies help spread pollen while feeding on flowers, supporting plant reproduction.'
     },
     {
-      q: '如果发现野生动物受伤，最好的做法是什么？',
-      options: ['联系专业救助机构', '把它带回家养', '继续围观'],
-      correct: '联系专业救助机构',
+      q: 'What is the best thing to do if you find an injured wild animal?',
+      options: [
+        'Contact a wildlife rescue organisation',
+        'Take it home as a pet',
+        'Stand around watching'
+      ],
+      correct: 'Contact a wildlife rescue organisation',
       reward: 30,
       explanation:
-        '专业动物救助机构拥有合适的设备和知识，可以更安全地帮助野生动物。'
+        'Professional rescue organisations have the equipment and experience needed to safely help injured wildlife.'
     },
     {
-      q: '建设“绿色城市”最重要的目标是什么？',
-      options: ['平衡生态、经济与居民幸福', '只发展工业', '完全禁止公园'],
-      correct: '平衡生态、经济与居民幸福',
+      q: 'What is the main goal of building a “green city”?',
+      options: [
+        'Balance ecology, economy and happiness',
+        'Only develop industry',
+        'Completely remove parks'
+      ],
+      correct: 'Balance ecology, economy and happiness',
       reward: 50,
       explanation:
-        '真正的绿色城市需要同时考虑生态保护、经济发展和居民生活质量。'
+        'A truly sustainable city must balance environmental protection, economic development and quality of life.'
     }
   ];
 
@@ -99,7 +115,7 @@ const QuizGame = ({ onCorrect }) => {
     if (ans === question.correct) {
       const reward = question.reward;
 
-      setFeedback(`✅ 太棒了！答对了。获得奖励金币：$${reward}`);
+      setFeedback(`✅ Correct! You earned $${reward} eco coins.`);
 
       setExplanation(question.explanation);
 
@@ -114,11 +130,15 @@ const QuizGame = ({ onCorrect }) => {
           setExplanation('');
           setAnswered(false);
         } else {
-          setFeedback('🎊 你完成了所有挑战，成为了博学守卫者！');
+          setFeedback(
+            '🎊 You completed all the challenges and became an Eco Knowledge Guardian!'
+          );
         }
       }, 3500);
     } else {
-      setFeedback('❌ 哎呀，再想一想？保护环境需要更准确的知识哦。');
+      setFeedback(
+        '❌ Not quite. Try again and think carefully about protecting the environment!'
+      );
 
       setExplanation(question.explanation);
 
@@ -135,10 +155,10 @@ const QuizGame = ({ onCorrect }) => {
         <div className="quiz-header">
           <span className="quiz-badge">ECO CHALLENGE</span>
 
-          <h2>💡 科普知识挑战赛</h2>
+          <h2>💡 Eco Knowledge Challenge</h2>
 
           <p>
-            答对问题，为你的“绿色城市”赚取建设基金！
+            Answer questions correctly to earn funding for your green city!
           </p>
         </div>
 
@@ -148,8 +168,7 @@ const QuizGame = ({ onCorrect }) => {
           </span>
 
           <h3>
-            问题 {currentQuestion + 1}：
-            {questions[currentQuestion].q}
+            Question {currentQuestion + 1}: {questions[currentQuestion].q}
           </h3>
 
           <div className="quiz-options">
@@ -175,7 +194,7 @@ const QuizGame = ({ onCorrect }) => {
 
           {explanation && (
             <div className="quiz-explanation">
-              <strong>知识解释：</strong>
+              <strong>Did You Know?</strong>
 
               <p>{explanation}</p>
             </div>
