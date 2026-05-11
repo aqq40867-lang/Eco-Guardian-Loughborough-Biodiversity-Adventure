@@ -47,12 +47,8 @@ const Footer = () => {
             Eco Learning
           </a>
 
-          <a href="/quiz">
-            Eco Quiz
-          </a>
-
           <a href="/game">
-            Eco City Game
+            Eco Game Center
           </a>
 
           <a href="/message">

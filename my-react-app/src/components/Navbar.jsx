@@ -39,16 +39,7 @@ const Navbar = () => {
               to="/education"
               className={activeStyle}
             >
-              Eco Tips
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/quiz"
-              className={activeStyle}
-            >
-              Quiz
+              Eco Classroom
             </NavLink>
           </li>
 

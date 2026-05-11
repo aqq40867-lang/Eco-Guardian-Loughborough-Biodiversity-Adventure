@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const BudgetGame = ({ stats, setStats, onPolicyMade }) => {
   const [currentOptions, setCurrentOptions] = useState([]);
   const [round, setRound] = useState(1);
-  const [lastAction, setLastAction] = useState('Mayor, make your first city decision.');
+  const [lastAction, setLastAction] = useState('Make your first city decision.');
 
   const policyPool = [
     {
@@ -298,7 +298,7 @@ const BudgetGame = ({ stats, setStats, onPolicyMade }) => {
       <div className="budget-game-card">
         <div className="budget-game-header">
           <span className="budget-game-badge">LOUGHBOROUGH 2026</span>
-          <h2>🏛️ Loughborough Mayor Dashboard</h2>
+          <h2>🏛️ Loughborough Eco City Simulator</h2>
           <p>Round {round}: Find balance in uncertain city decisions.</p>
         </div>
 

@@ -86,7 +86,7 @@ const MessageBoard = () => {
   if (view === 'PROMPT') {
     return (
       <section
-        className="message-section card-style"
+        className="message-board-section card-style"
         id="message"
       >
         <p>

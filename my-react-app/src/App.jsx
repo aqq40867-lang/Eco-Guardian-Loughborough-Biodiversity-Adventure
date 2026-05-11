@@ -11,9 +11,9 @@ import './index.css';
 import HomePage from './pages/HomePage';
 import BiodiversityPage from './pages/BiodiversityPage';
 import EcoClassroomPage from './pages/EcoClassroomPage';
-import QuizPage from './pages/QuizPage';
 import GamePage from './pages/GamePage';
 import MessagePage from './pages/MessagePage';
+import AnimalDetailPage from './pages/AnimalDetailPage';
 
 const App = () => {
   return (
@@ -36,11 +36,6 @@ const App = () => {
         />
 
         <Route
-          path="/quiz"
-          element={<QuizPage />}
-        />
-
-        <Route
           path="/game"
           element={<GamePage />}
         />
@@ -48,6 +43,11 @@ const App = () => {
         <Route
           path="/message"
           element={<MessagePage />}
+        />
+
+        <Route
+          path="/animal/:animalId"
+          element={<AnimalDetailPage />}
         />
 
       </Routes>

@@ -13,7 +13,7 @@ const AuthPanel = ({ onLogin }) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.password) {
-      alert('请填写完整信息');
+      alert('Please fill in all fields');
       return;
     }
 
@@ -22,7 +22,7 @@ const AuthPanel = ({ onLogin }) => {
     const exists = users.find(user => user.email === formData.email);
 
     if (exists) {
-      alert('该邮箱已经注册，请直接登录');
+      alert('This email is already registered. Please log in.');
       return;
     }
 
@@ -34,7 +34,7 @@ const AuthPanel = ({ onLogin }) => {
 
     localStorage.setItem('eco-users', JSON.stringify([...users, newUser]));
 
-    alert('注册成功，请登录');
+    alert('Registration successful. Please log in.');
     setMode('login');
   };
 
@@ -50,7 +50,7 @@ const AuthPanel = ({ onLogin }) => {
     );
 
     if (!user) {
-      alert('邮箱或密码错误');
+      alert('Incorrect email or password');
       return;
     }
 
@@ -65,7 +65,7 @@ const AuthPanel = ({ onLogin }) => {
       onLogin(loginUser);
     }
 
-    alert(`欢迎回来，${user.name}！`);
+    alert(`Welcome back, ${user.name}!`);
   };
 
   return (
@@ -75,7 +75,9 @@ const AuthPanel = ({ onLogin }) => {
       </span>
 
       <h3>
-        {mode === 'login' ? '守护者登录' : '注册生态守护者'}
+        {mode === 'login'
+          ? 'Guardian Login'
+          : 'Register as an Eco Guardian'}
       </h3>
 
       <form
@@ -85,7 +87,7 @@ const AuthPanel = ({ onLogin }) => {
         {mode === 'register' && (
           <input
             type="text"
-            placeholder="你的名字"
+            placeholder="Your Name"
             className="input-style"
             value={formData.name}
             onChange={(e) =>
@@ -99,7 +101,7 @@ const AuthPanel = ({ onLogin }) => {
 
         <input
           type="email"
-          placeholder="邮箱地址"
+          placeholder="Email Address"
           className="input-style"
           value={formData.email}
           onChange={(e) =>
@@ -112,7 +114,7 @@ const AuthPanel = ({ onLogin }) => {
 
         <input
           type="password"
-          placeholder="密码"
+          placeholder="Password"
           className="input-style"
           value={formData.password}
           onChange={(e) =>
@@ -124,7 +126,7 @@ const AuthPanel = ({ onLogin }) => {
         />
 
         <button type="submit" className="btn-kid">
-          {mode === 'login' ? '登录' : '注册'}
+          {mode === 'login' ? 'Login' : 'Register'}
         </button>
       </form>
 
@@ -136,8 +138,8 @@ const AuthPanel = ({ onLogin }) => {
         }
       >
         {mode === 'login'
-          ? '还没有账号？立即注册'
-          : '已有账号？返回登录'}
+          ? "Don't have an account? Register now"
+          : 'Already have an account? Back to login'}
       </button>
     </section>
   );

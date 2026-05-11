@@ -1,65 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const EcoTaskPanel = ({ tasks }) => {
+const EcoTaskPanel = ({ tasks = {} }) => {
+  const [collapsed, setCollapsed] = useState(false);
+
   const taskList = [
     {
-      key: 'quiz',
-      label: 'Answer 3 quiz questions',
-      icon: '💡',
-      done: tasks.quizAnswered >= 3,
-      progress: `${Math.min(tasks.quizAnswered, 3)}/3`
+      title: 'Answer 3 quiz questions',
+      reward: `${Math.min(tasks.quizAnswered || 0, 3)}/3`,
+      done: (tasks.quizAnswered || 0) >= 3,
+      icon: '💡'
     },
     {
-      key: 'gallery',
-      label: 'View 2 wildlife cards',
-      icon: '🦊',
-      done: tasks.galleryViewed >= 2,
-      progress: `${Math.min(tasks.galleryViewed, 2)}/2`
+      title: 'View 2 wildlife cards',
+      reward: `${Math.min(tasks.galleryViewed || 0, 2)}/2`,
+      done: (tasks.galleryViewed || 0) >= 2,
+      icon: '🦊'
     },
     {
-      key: 'policy',
-      label: 'Make 1 city policy decision',
-      icon: '🏛️',
-      done: tasks.policyMade >= 1,
-      progress: `${Math.min(tasks.policyMade, 1)}/1`
+      title: 'Make 1 city policy decision',
+      reward: `${Math.min(tasks.policyMade || 0, 1)}/1`,
+      done: (tasks.policyMade || 0) >= 1,
+      icon: '🏛️'
     }
   ];
 
   const allDone = taskList.every(task => task.done);
 
   return (
-    <aside className="eco-task-panel">
+    <div className={`eco-task-panel ${collapsed ? 'collapsed' : ''}`}>
       <div className="eco-task-header">
-        <span>🌱 Daily Eco Tasks</span>
-        {allDone && <strong>Completed!</strong>}
+        <span className="eco-task-title">🌿 Daily Tasks</span>
+
+        <button
+          className="eco-task-toggle"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          {collapsed ? '＋' : '－'}
+        </button>
       </div>
 
-      <div className="eco-task-list">
-        {taskList.map(task => (
-          <div
-            key={task.key}
-            className={`eco-task-item ${task.done ? 'done' : ''}`}
-          >
-            <span className="eco-task-icon">{task.icon}</span>
+      {!collapsed && (
+        <>
+          <div className="eco-task-list">
+            {taskList.map((task, index) => (
+              <div
+                key={index}
+                className={`eco-task-item ${task.done ? 'done' : ''}`}
+              >
+                <span className="eco-task-icon">{task.icon}</span>
 
-            <div>
-              <p>{task.label}</p>
-              <small>{task.progress}</small>
-            </div>
+                <div>
+                  <p>{task.title}</p>
+                  <small>{task.reward}</small>
+                </div>
 
-            <span className="eco-task-check">
-              {task.done ? '✅' : '○'}
-            </span>
+                <span className="eco-task-check">
+                  {task.done ? '✅' : '⬜'}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {allDone && (
-        <div className="eco-task-reward">
-          🎉 Eco Badge Unlocked: Eco Hero
-        </div>
+          <div className="eco-task-reward">
+            {allDone
+              ? '🎉 All tasks completed!'
+              : '🎁 Complete all tasks for bonus rewards!'}
+          </div>
+        </>
       )}
-    </aside>
+    </div>
   );
 };
 
