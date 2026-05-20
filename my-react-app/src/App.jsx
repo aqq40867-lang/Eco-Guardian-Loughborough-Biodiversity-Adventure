@@ -17,7 +17,7 @@ import AnimalDetailPage from './pages/AnimalDetailPage';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Coursework">
       <Routes>
 
         <Route

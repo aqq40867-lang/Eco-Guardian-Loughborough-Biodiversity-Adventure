@@ -1,6 +1,5 @@
 /* ==========================================================
    0. Theme Variables
-   Global color palette used across the whole website.
    ========================================================== */
 
 :root {
@@ -14,7 +13,6 @@
 
 /* ==========================================================
    1. Global Styles
-   Basic page layout, typography, and common elements.
    ========================================================== */
 
 html {
@@ -51,7 +49,6 @@ input {
 
 /* ==========================================================
    2. Reusable UI Components
-   Shared buttons, cards, and form inputs.
    ========================================================== */
 
 .btn-primary,
@@ -94,7 +91,6 @@ input {
 
 /* ==========================================================
    3. Navigation Bar
-   Sticky pill-shaped navigation used on all pages.
    ========================================================== */
 
 .navbar-pill {
@@ -181,7 +177,6 @@ input {
 
 /* ==========================================================
    4. Page Hero
-   Shared hero block for secondary pages.
    ========================================================== */
 
 .page-hero {
@@ -218,7 +213,6 @@ input {
 
 /* ==========================================================
    5. Home Carousel
-   Large image carousel used on the homepage.
    ========================================================== */
 
 .home-carousel {
@@ -359,7 +353,6 @@ input {
 
 /* ==========================================================
    6. Biodiversity Gallery
-   Wildlife cards, category tabs, carousel layout, and images.
    ========================================================== */
 
 .biodiversity-section {
@@ -564,7 +557,6 @@ input {
 
 /* ==========================================================
    7. Interactive Eco Map
-   Leaflet map section with markers and discovery panel.
    ========================================================== */
 
 .eco-map-helper {
@@ -787,7 +779,6 @@ input {
 
 /* ==========================================================
    8. Budget Game Dashboard
-   City simulation system with KPI bars and policy cards.
    ========================================================== */
 
 .budget-game-section {
@@ -1005,7 +996,6 @@ input {
 
 /* ==========================================================
    9. Quiz Section
-   Interactive quiz section with feedback and explanation.
    ========================================================== */
 
 .quiz-section {
@@ -1312,7 +1302,6 @@ input {
 
 /* ==========================================================
    12. Cookie Consent Banner
-   GDPR-style cookie notice.
    ========================================================== */
 
 .cookie-banner {
@@ -1390,7 +1379,6 @@ input {
 
 /* ==========================================================
    13. Footer
-   Large multi-column footer inspired by zoo/education websites.
    ========================================================== */
 
 .site-footer {
@@ -1544,7 +1532,6 @@ input {
 
 /* ==========================================================
    14. Responsive Design
-   Tablet and mobile layout adjustments.
    ========================================================== */
 
 @media (max-width: 1100px) {

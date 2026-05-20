@@ -34,7 +34,6 @@ body {
   box-shadow: 0 0 25px rgba(222, 255, 154, 0.4);
 }
 
-/* 3D Hero 堆叠 - 保持紧凑感 */
 .hero {
   position: relative;
   height: 180px; 
@@ -54,7 +53,6 @@ body {
   top: 0;
 }
 
-/* 动画中也移除了颜色干扰，只留位置变换 */
 .hero .framework {
   z-index: 1;
   top: 20px;
@@ -91,7 +89,7 @@ body {
   max-width: 500px;
   line-height: 1.6;
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.8); /* 半透明白色，不抢标题戏 */
+  color: rgba(255, 255, 255, 0.8);
   margin: 0 auto 20px;
 }
 

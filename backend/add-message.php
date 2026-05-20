@@ -14,14 +14,14 @@ require "db.php";
 
 try {
 
-    // 获取前端 JSON
+    // get JSON
     $data = json_decode(file_get_contents("php://input"), true);
 
-    // 防止空值
+    // prevent missing
     $name = trim($data["name"] ?? "Anonymous");
     $message = trim($data["message"] ?? "");
 
-    // 输入验证
+    // validation
     if ($message === "") {
 
         http_response_code(400);
@@ -34,7 +34,7 @@ try {
         exit;
     }
 
-    // 长度限制（防止恶意提交）
+    // length restrition
     if (strlen($message) > 500) {
 
         http_response_code(400);
@@ -47,7 +47,7 @@ try {
         exit;
     }
 
-    // SQL 插入
+    // SQL insertion
     $stmt = $pdo->prepare("
         INSERT INTO messages (name, message)
         VALUES (?, ?)
@@ -55,7 +55,7 @@ try {
 
     $stmt->execute([$name, $message]);
 
-    // 返回成功
+    // return
     echo json_encode([
         "success" => true,
         "messageId" => $pdo->lastInsertId(),
