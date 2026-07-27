@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AuthPanel from './AuthPanel';
 
-const API_BASE = 'http://dv0881.sci-project.lboro.ac.uk/Coursework/api';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://dv0881.sci-project.lboro.ac.uk/Coursework/api';
 
 const MessageBoard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

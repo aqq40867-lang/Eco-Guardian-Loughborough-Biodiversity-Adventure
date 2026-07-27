@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  message TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS progress (
+  user_id VARCHAR(100) PRIMARY KEY,
+  money INT DEFAULT 0,
+  eco INT DEFAULT 0,
+  happy INT DEFAULT 0,
+  quiz_answered INT DEFAULT 0,
+  gallery_viewed INT DEFAULT 0,
+  policy_made INT DEFAULT 0
+);

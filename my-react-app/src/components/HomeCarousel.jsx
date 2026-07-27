@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RiverImg from '../assets/Print/River.jpg';
-import ParkImg from '../assets/Print/Park.jpg';
-import ForestImg from '../assets/Print/Forest.jpg';
+import ParkImg from '../assets/Print/Park.JPG';
+import ForestImg from '../assets/Print/Forest.JPG';
 
 const slides = [
   {

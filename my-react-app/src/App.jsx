@@ -15,9 +15,14 @@ import GamePage from './pages/GamePage';
 import MessagePage from './pages/MessagePage';
 import AnimalDetailPage from './pages/AnimalDetailPage';
 
+// Derives the router basename from Vite's base path (set via vite.config.js
+// or the --base CLI flag), so this matches whatever path the app is served
+// from in production ("/Coursework") or locally in Docker ("/").
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const App = () => {
   return (
-    <BrowserRouter basename="/Coursework">
+    <BrowserRouter basename={basename}>
       <Routes>
 
         <Route
